@@ -1,0 +1,29 @@
+<!-- Main window -->
+<div class="main_container" id="dashboard_page">
+
+
+<div class="row-fluid" style="margin-top: 20px;">
+  <div class="widget span6">
+    <div class="widget-header"><i class="icon-signal"></i><h5>Secret Key</h5>
+      <div class="widget-buttons">
+        <a href="#" data-title="Collapse" data-collapsed="false" class="tip collapse"><i class="icon-chevron-up"></i></a>
+      </div>
+    </div>
+    <div class="widget-body clearfix" style="height: 90px;">
+      <div>
+          <%=@game.secret_key%>
+      </div>
+    </div>
+  </div>
+  <div class="widget span6">
+    <div class="widget-header"><i class="icon-signal"></i><h5>Game Key</h5>
+      <div class="widget-buttons">
+        <a href="#" data-title="Collapse" data-collapsed="false" class="tip collapse"><i class="icon-chevron-up"></i></a>
+      </div>
+    </div>
+    <div class="widget-body clearfix" style="height: 90px;">
+    <%=@game.game_key%>
+    </div>
+  </div>
+</div>
+</div>

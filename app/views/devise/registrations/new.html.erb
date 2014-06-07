@@ -1,0 +1,73 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Realm - REgister</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Bluth Company">
+  <link rel="shortcut icon" href="assets/ico/favicon.html">
+  <link href="assets/css/bootstrap.css" rel="stylesheet">
+  <link href="assets/css/theme.css" rel="stylesheet">
+  <link href="assets/css/font-awesome.min.css" rel="stylesheet">
+  <link href="assets/css/alertify.css" rel="stylesheet">
+  <link rel="Favicon Icon" href="favicon.ico">
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
+  <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div id="wrap">
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="row-fluid">
+          <div class="widget container-narrow">
+            <div class="widget-header">
+              <i class="icon-edit"></i>
+              <h5>Crear una cuenta en Gamecenter</h5>
+            </div>
+            <div class="widget-body clearfix" style="padding:25px;">
+              <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+               <div class="control-group ">
+                  <label for="form_email">Email:</label>
+                  <div class="controls"><%= f.email_field :email, autofocus: true, :class=> "btn-block", :id=>"form_username" %></div>
+                </div>
+
+                <div class="control-group ">
+                  <label for="form_password">Password:</label>
+                  <div class="controls"><%= f.password_field :password, autocomplete: "off", :class=> "btn-block", :id=>"form_password" %></div>
+
+                </div>
+
+                <div class="control-group ">
+                  <label for="form_password">Confirmar Password:</label>
+                  <div class="controls"><%= f.password_field :password_confirmation, autocomplete: "off", :class=> "btn-block", :id=>"form_password" %></div>
+                </div>
+
+
+                <%= f.submit "Registrarte", :class=>"btn btn-large btn-block" %>
+
+              <% end %>
+            </div>
+          </div>
+        </div><!--/row-fluid-->
+      </div><!--/span10-->
+    </div><!--/row-fluid-->
+  </div><!--/.fluid-container-->
+</div><!-- wrap ends-->
+
+<script type="text/javascript" src="../../../code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript" src="../../../ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+<script type="text/javascript" src="../../../cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script type="text/javascript" src="assets/js/bootstrap.js"></script>
+<script type="text/javascript" src='assets/js/sparkline.js'></script>
+<script type="text/javascript" src='assets/js/morris.min.js'></script>
+<script type="text/javascript" src="assets/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.masonry.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.imagesloaded.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.facybox.js"></script>
+<script type="text/javascript" src="assets/js/jquery.elfinder.min.html"></script>
+<script type="text/javascript" src="assets/js/jquery.alertify.min.js"></script>
+<script type="text/javascript" src="assets/js/realm.js"></script>
+</body>

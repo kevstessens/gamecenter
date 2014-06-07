@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @game_owner.email %>
+</p>
+
+<p>
+  <strong>Password:</strong>
+  <%= @game_owner.password %>
+</p>
+
+<p>
+  <strong>Game:</strong>
+  <%= @game_owner.game %>
+</p>
+
+<%= link_to 'Edit', edit_game_owner_path(@game_owner) %> |
+<%= link_to 'Back', game_owners_path %>
