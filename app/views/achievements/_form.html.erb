@@ -1,37 +1,97 @@
-<%= form_for(@achievement) do |f| %>
-  <% if @achievement.errors.any? %>
+
+<% if @achievement.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@achievement.errors.count, "error") %> prohibited this achievement from being saved:</h2>
+      <h2><%= pluralize(@achievement.errors.count, "error") %> prohibited this game from being saved:</h2>
 
       <ul>
-      <% @achievement.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% @achievement.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :game_id %><br>
-    <%= f.text_field :game_id %>
-  </div>
-  <div class="field">
-    <%= f.label :points %><br>
-    <%= f.number_field :points %>
-  </div>
-  <div class="field">
-    <%= f.label :image %><br>
-    <%= f.text_field :image %>
-  </div>
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_field :description %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>
+
+<!-- Main window -->
+
+
+
+<%unless notice.nil?%>
+    <div class="control-group">
+      <div class="controls">
+        <div class="alert alert-success">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          <strong>Éxito! </strong> <%= notice%>
+        </div>
+      </div>
+    </div>
+<%end%>
+
+
+<%unless alert.nil?%>
+
+    <div class="control-group">
+      <div class="controls">
+        <div class="alert alert-error">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          <strong>Error!</strong> <%= alert%>
+        </div>
+      </div>
+    </div>
+<%end%>
+
+
+<div class="row-fluid" style="margin-top: 20px;">
+  <div class="widget widget-padding span12">
+    <div class="widget-header">
+      <i class="icon-list-alt"></i><h5>Logro</h5>
+      <div class="widget-buttons">
+        <a href="#" data-title="Collapse" data-collapsed="false" class="tip collapse"><i class="icon-chevron-up"></i></a>
+      </div>
+    </div>
+    <div class="widget-body">
+      <div class="widget-forms clearfix">
+        <%= form_for @achievement, :html => { :class => "form-horizontal" } do |f| %>
+            <%= f.hidden_field :game_id, :value=> current_game_owner.game.id %>
+
+            <div class="control-group">
+              <label class="control-label">Nombre</label>
+              <div class="controls">
+                <%= f.text_field :name, :class=> "span7", :placeholder=> "Nombre del logro" %><br>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label">Puntos</label>
+              <div class="controls">
+                <%= f.number_field :points, :class=> "span7", :placeholder=> "puntos del logro" %><br>
+                <span class="help-inline">Te quedan <%= @remaining_points%> para distribuir</span>
+              </div>
+
+            </div>
+
+            <div class="control-group">
+              <label class="control-label">Descripción</label>
+              <div class="controls">
+                <%= f.text_area :description, :class=> "span7", :placeholder=> "Descripción del logro", :style=>"height:100px;", :rows=>5 %>
+
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label">Imagen</label>
+              <div class="controls">
+
+                <%= f.file_field :image, :class=> "span7" %>
+                <%= f.hidden_field :image_cache %>
+              </div>
+            </div>
+
+            <div class="widget-footer">
+              <%= f.submit "Guardar", :class=>"btn btn-primary" %>
+            </div>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>

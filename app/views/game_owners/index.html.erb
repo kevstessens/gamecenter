@@ -1,5 +1,31 @@
 <!-- Main window -->
 <div class="main_container" id="dashboard_page">
+
+
+<%unless notice.nil?%>
+    <div class="control-group">
+      <div class="controls">
+        <div class="alert alert-success">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          <strong>Éxito! </strong> <%= notice%>
+        </div>
+      </div>
+    </div>
+<%end%>
+
+
+<%unless alert.nil?%>
+
+    <div class="control-group">
+      <div class="controls">
+        <div class="alert alert-error">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          <strong>Error!</strong> <%= alert%>
+        </div>
+      </div>
+    </div>
+<%end%>
+
 <div class="row-fluid">
   <div class="overview_boxes">
     <div class="box_row clearfix">
@@ -158,7 +184,7 @@
         <% @gamers.each do |gamer| %>
 
       <div class="userstats clearfix">
-          <a href="javascript:void(0)" data-toggle="modal" data-target="#task_modal">
+          <a href="javascript:void(0)" data-toggle="modal" data-target="#task_modal_<%= gamer.id%>">
             <img src="<%= gamer.image%>" class="image" style="margin-left: 13px;">
             <div class="widget">
               <input class="knob" data-width="75" data-height="75" data-displayInput=false data-readOnly=true data-thickness=".3" value="55">
@@ -166,7 +192,8 @@
             <p><%= gamer.name%></p>
           </a>
         </div>
-            <% end%>
+
+      <% end%>
 
 
       </div>
@@ -288,45 +315,42 @@
 </div>
 
 <!-- example modal -->
-<div id="example_modal2" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Example Modal</h3>
-  </div>
-  <div class="modal-body">
-    <p>Here you can write more information about the object you clicked</p>
-  </div>
-  <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-    <button class="btn btn-primary">Save changes</button>
-  </div>
-</div>
 
+<% @gamers.each do |gamer| %>
 
+     <div id="task_modal_<%= gamer.id%>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">Información del jugador</h3>
+      </div>
+      <div class="modal-body">
+        <div class="clearfix">
+          <img src="<%= gamer.image%>" class="img-circle" style="float: left; width: 65px; margin-right: 20px;">
+          <h3 style="margin:0"><%= gamer.name%></h3>
+          <%if gamer.achievements.count == 0 or gamer.achievements.nil?%>
+              <p class="muted">No posee logros actualmente</p>
+        <%elsif gamer.achievements.count == 1%>
+        <p class="muted">Posee <%= gamer.achievements.count%> solo logro</p>
 
-<!-- task_modal modal -->
-<div id="task_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Task info example</h3>
-  </div>
-  <div class="modal-body">
-    <div class="clearfix">
-      <img src="assets/img/avatars/11.jpg" class="img-circle" style="float: left; width: 65px; margin-right: 20px;">
-      <h3 style="margin:0">John</h3>
-      <p class="muted">Marketing</p>
+        <%else%>
+              <p class="muted">Posee <%= gamer.achievements.count%> logros en total</p>
+<%end%>
+
+              </div>
+        <hr>
+        <% unless gamer.achievements.last.nil?%>
+            <h5>Último logro</h5>
+            <p><%= gamer.achievements.last.name%></p>
+            <h5>puntos&nbsp;&nbsp;<small><%= gamer.achievements.last.points%></small></h5>
+        <%end%>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+      </div>
     </div>
-    <hr>
-    <h5>Task</h5>
-    <p>Create a marketing plan for the new campaign</p>
-    <h5>status&nbsp;&nbsp;<small>60%</small></h5>
-    <div class="progress">
-      <div class="bar" style="width: 60%;"></div>
-    </div>
-  </div>
-  <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-  </div>
-</div>
+
+<% end%>
+
+
 
 

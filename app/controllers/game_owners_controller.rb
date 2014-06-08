@@ -6,6 +6,7 @@ class GameOwnersController < ApplicationController
   def index
     @game_owners = GameOwner.all
     @gamers = current_game_owner.game.users
+    @gamers = User.all
   end
 
   # GET /game_owners/1

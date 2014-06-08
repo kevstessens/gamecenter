@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140607204837) do
+ActiveRecord::Schema.define(version: 20140608182639) do
 
   create_table "achievements", force: true do |t|
     t.integer  "game_id"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20140607204837) do
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "active"
   end
 
   add_index "achievements", ["game_id"], name: "index_achievements_on_game_id"

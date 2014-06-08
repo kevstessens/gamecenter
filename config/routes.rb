@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  match '/achievements/activate/:id', to: 'achievements#activate', via: [:get, :post], as: "achievements_activate"
   resources :achievements
 
   resources :games

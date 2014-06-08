@@ -1,10 +1,23 @@
 class AchievementsController < ApplicationController
-  before_action :set_achievement, only: [:show, :edit, :update, :destroy]
+  before_action :set_achievement, only: [:show, :edit, :update, :destroy, :activate]
 
   # GET /achievements
   # GET /achievements.json
   def index
     @achievements = Achievement.all
+  end
+
+  def activate
+    @achievement.active = true
+    respond_to do |format|
+      if @achievement.save
+        format.html { redirect_to :back, notice: 'se ha activado su logro correctamente.' }
+        format.json { render :show, status: :ok, location: @achievement }
+      else
+        format.html { redirect_to :back, alert: 'No pudo activarse su logro, intente nuevamente.' }
+        format.json { render json: @achievement.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # GET /achievements/1
@@ -15,25 +28,51 @@ class AchievementsController < ApplicationController
   # GET /achievements/new
   def new
     @achievement = Achievement.new
+    @remaining_points = 2000
+    current_game_owner.game.achievements.each do |achievement|
+      @remaining_points = @remaining_points - achievement.points
+    end
+
   end
 
   # GET /achievements/1/edit
   def edit
+    @remaining_points = 2000
+    current_game_owner.game.achievements.each do |achievement|
+      @remaining_points = @remaining_points - achievement.points
+    end
   end
 
   # POST /achievements
   # POST /achievements.json
   def create
     @achievement = Achievement.new(achievement_params)
+    @remaining_points = 2000
+    current_game_owner.game.achievements.each do |achievement|
+      @remaining_points = @remaining_points - achievement.points
+    end
 
     respond_to do |format|
-      if @achievement.save
-        format.html { redirect_to @achievement, notice: 'Achievement was successfully created.' }
-        format.json { render :show, status: :created, location: @achievement }
+      if @achievement.points.nil?
+        points = @remaining_points
       else
-        format.html { render :new }
-        format.json { render json: @achievement.errors, status: :unprocessable_entity }
+        points =@remaining_points - @achievement.points
       end
+
+      if points > 0
+        if @achievement.save
+          format.html { redirect_to edit_game_path(current_game_owner.game), notice: 'Se ha guardado el logro correctamente.' }
+          format.json { render :show, status: :created, location: @achievement }
+        else
+          format.html { render :new }
+          format.json { render json: @achievement.errors, status: :unprocessable_entity }
+        end
+      else
+        format.html { render :new, alert: "No te quedan suficientes puntos disponibles." }
+        format.json { render json: "not enough points", status: :unprocessable_entity }
+      end
+
+
     end
   end
 
@@ -69,6 +108,6 @@ class AchievementsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def achievement_params
-      params.require(:achievement).permit(:game_id, :points, :image, :name, :description)
+      params.require(:achievement).permit(:game_id, :points, :image, :name, :description, :active)
     end
 end
