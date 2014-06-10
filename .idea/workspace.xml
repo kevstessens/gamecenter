@@ -5,7 +5,6 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/game/image/2/10257702_10152425681882728_2530154633839628610_n.jpg" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/game/image/2/thumb_10257702_10152425681882728_2530154633839628610_n.jpg" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="gamecenter.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -52,7 +51,7 @@
       <file leaf-file-name="Gemfile" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Gemfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="36" column="33" selection-start="1210" selection-end="1210" vertical-scroll-proportion="0.7826087" vertical-offset="0" max-vertical-offset="870">
+            <state line="20" column="32" selection-start="757" selection-end="757" vertical-scroll-proportion="0.4347826" vertical-offset="0" max-vertical-offset="870">
               <folding />
             </state>
           </provider>
@@ -1059,7 +1058,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Gemfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="33" selection-start="1210" selection-end="1210" vertical-scroll-proportion="0.7826087" vertical-offset="0" max-vertical-offset="870">
+        <state line="20" column="32" selection-start="757" selection-end="757" vertical-scroll-proportion="0.4347826" vertical-offset="0" max-vertical-offset="870">
           <folding />
         </state>
       </provider>
