@@ -3,24 +3,25 @@
     <html lang="en">
     <head>
       <meta charset="utf-8">
-      <title>Gamecenter </title>
+      <title>Kamecenter </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="author" content="Bluth Company">
-      <link rel="shortcut icon" href="assets/ico/favicon.html">
-      <link href="assets/bootstrap.css" rel="stylesheet">
-      <link href="assets/theme.css" rel="stylesheet">
-      <link href="assets/font-awesome.min.css" rel="stylesheet">
-      <link href="assets/alertify.css" rel="stylesheet">
+      <link rel="shortcut icon" href="/assets/favicon.html">
+      <link href="/assets/bootstrap.css" rel="stylesheet">
+      <link href="/assets/theme.css" rel="stylesheet">
+      <link href="/assets/font-awesome.min.css" rel="stylesheet">
+      <link href="/assets/alertify.css" rel="stylesheet">
       <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
-      <link rel="Favicon Icon" href="favicon.ico">
+      <link rel="Favicon Icon" href="/assets/favicon.ico">               \
+      <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+      <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
       <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
       <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 
       <![endif]-->
-      <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-      <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-      <%= csrf_meta_tags %>
+
     </head>
     <body>
 
@@ -33,16 +34,16 @@
     <html lang="en">
     <head>
       <meta charset="utf-8">
-      <title>Gamecenter - Dashboard for <%= current_game_owner.email%></title>
+      <title>Kamecenter - Dashboard for <%= current_game_owner.email%></title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="author" content="Bluth Company">
-      <link rel="shortcut icon" href="assets/favicon.html">
-      <link href="assets/bootstrap.css" rel="stylesheet">
-      <link href="assets/theme.css" rel="stylesheet">
-      <link href="assets/font-awesome.min.css" rel="stylesheet">
-      <link href="assets/alertify.css" rel="stylesheet">
+      <link rel="shortcut icon" href="/assets/favicon.html">
+      <link href="/assets/bootstrap.css" rel="stylesheet">
+      <link href="/assets/theme.css" rel="stylesheet">
+      <link href="/assets/font-awesome.min.css" rel="stylesheet">
+      <link href="/assets/alertify.css" rel="stylesheet">
       <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
-      <link rel="Favicon Icon" href="favicon.ico">
+      <link rel="Favicon Icon" href="/assets/favicon.ico">
       <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
       <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -77,7 +78,9 @@
                 <!--<li><a id="notifications" data-notification="3" href="#"><i class="icon-globe"></i> Notifications</a></li>-->
               </ul>
               <ul class="pull-right">
-                <li><a href="<%= destroy_game_owner_session_path%>"><i class="icon-off"></i> Cerrar sesión</a></li>
+
+                <li>                <%=link_to '<i class="icon-off"></i> Cerrar sesión'.html_safe, destroy_game_owner_session_path, method: :delete%>
+                </li>
               </ul>
             </div>
 
@@ -122,6 +125,7 @@
                 <a class="accordion-toggle b_C1F8A9" href="<%= game_info_path%>"><i class="icon-key"></i> <span>Credenciales</span></a>
               </div>
             </div>
+
             <!--<div class="accordion-group">-->
               <!--<div class="accordion-heading">-->
                 <!--<a class="accordion-toggle b_9FDDF6" href="tickets.html"><i class="icon-bullhorn"></i> <span>Support Tickets</span></a>-->
@@ -148,22 +152,23 @@
 
         <%= yield %>
 
-        <script src="ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-        <script type="text/javascript" src="ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
-        <script type="text/javascript" src="cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-        <script type="text/javascript" src="assets/bootstrap.js"></script>
-        <script type="text/javascript" src='assets/sparkline.js'></script>
-        <script type="text/javascript" src='assets/morris.min.js'></script>
-        <script type="text/javascript" src="assets/jquery.dataTables.min.js"></script>
-        <script type="text/javascript" src="assets/jquery.masonry.min.js"></script>
-        <script type="text/javascript" src="assets/jquery.imagesloaded.min.js"></script>
-        <script type="text/javascript" src="assets/jquery.facybox.js"></script>
-        <script type="text/javascript" src="assets/jquery.alertify.min.js"></script>
-        <script type="text/javascript" src="assets/jquery.knob.js"></script>
-        <script type='text/javascript' src='assets/fullcalendar.min.js'></script>
-        <script type='text/javascript' src='assets/jquery.gritter.min.js'></script>
-        <script type="text/javascript" src="assets/realm.js"></script>
-        <script type="text/javascript" src="assets/jquery.slimscroll.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+        <script type="text/javascript" src="/assets/bootstrap.js"></script>
+        <script type="text/javascript" src='/assets/sparkline.js'></script>
+        <script type="text/javascript" src='/assets/morris.min.js'></script>
+        <script type="text/javascript" src="/assets/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/assets/jquery.masonry.min.js"></script>
+        <script type="text/javascript" src="/assets/jquery.imagesloaded.min.js"></script>
+        <script type="text/javascript" src="/assets/jquery.facybox.js"></script>
+        <script type="text/javascript" src="/assets/jquery.alertify.min.js"></script>
+        <script type="text/javascript" src="/assets/jquery.knob.js"></script>
+        <script type='text/javascript' src='/assets/fullcalendar.min.js'></script>
+        <script type='text/javascript' src='/assets/jquery.gritter.min.js'></script>
+        <script type="text/javascript" src="/assets/realm.js"></script>
+        <script type="text/javascript" src="/assets/jquery.slimscroll.min.js"></script>
+        <%= csrf_meta_tags %>
     </body>
     </html>
 
