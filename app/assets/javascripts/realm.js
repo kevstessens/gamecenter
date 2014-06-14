@@ -28,7 +28,7 @@ $(function() {
       html:true,
       placement: 'bottom',
       title: 'Messages',
-      content:'<ul><li><a href="#"><img src="assets/img/avatars/04.jpg"><span>Today</span><h4>Bill Fernando</h4>Hey John, have you finished the report yet?</a></li><li><a href="#"><img src="assets/img/avatars/05.jpg"><span>Yesterday</span><h4>Roger White</h4>Did you talk to Andrea? She was looking for you</a></li></ul><div class="popover_footer"><a href="">View all messages</a></div>'
+      content:'<ul><li><a href="#"><img src="/assets/avatars/04.jpg"><span>Today</span><h4>Bill Fernando</h4>Hey John, have you finished the report yet?</a></li><li><a href="#"><img src="/assets/avatars/05.jpg"><span>Yesterday</span><h4>Roger White</h4>Did you talk to Andrea? She was looking for you</a></li></ul><div class="popover_footer"><a href="">View all messages</a></div>'
     });
 
     // header menu notifications 
@@ -36,7 +36,7 @@ $(function() {
       html:true,
       placement: 'bottom',
       title: 'Notifications',
-      content:'<ul><li><a href="#"><img src="assets/img/avatars/07.jpg"><span>Today</span><h4>Cody Negley</h4>Requested a vacation for 3 days.</a></li><li><a href="#"><img src="assets/img/avatars/09.jpg"><span>Yesterday</span><h4>Customer Support</h4>You have 3 new tickets assigned to you.</a></li></ul><div class="popover_footer"><a href="">View all notifications</a></div>'
+      content:'<ul><li><a href="#"><img src="/assets/avatars/07.jpg"><span>Today</span><h4>Cody Negley</h4>Requested a vacation for 3 days.</a></li><li><a href="#"><img src="/assets/avatars/09.jpg"><span>Yesterday</span><h4>Customer Support</h4>You have 3 new tickets assigned to you.</a></li></ul><div class="popover_footer"><a href="">View all notifications</a></div>'
     });
 
 
@@ -105,20 +105,20 @@ if($('#dashboard_page').length > 0 ){
   $('.slimscroll').slimScroll({height:'310px'});
   // Welcome notification
 
-  $.gritter.add({
-    // (string | mandatory) the heading of the notification
-    title: 'Bienvenido al panel de administración de tu juego',
-    // (string | mandatory) the text inside the notification
-    text: 'Esperamos que puedas disfrutarlo',
-    // (string | optional) the image to display on the left
-    image: 'http://graph.facebook.com/1280412546/picture?type=square',
-    // (bool | optional) if you want it to fade out on its own or just sit there
-    sticky: true,
-    // (int | optional) the time you want it to be alive for before fading out
-    time: '',
-    // (string | optional) the class name you want to apply to that specific message
-    class_name: 'my-sticky-class'
-  });
+//  $.gritter.add({
+//    // (string | mandatory) the heading of the notification
+//    title: 'Bienvenido al panel de administración de tu juego',
+//    // (string | mandatory) the text inside the notification
+//    text: 'Esperamos que puedas disfrutarlo',
+//    // (string | optional) the image to display on the left
+//    image: 'http://graph.facebook.com/1280412546/picture?type=square',
+//    // (bool | optional) if you want it to fade out on its own or just sit there
+//    sticky: true,
+//    // (int | optional) the time you want it to be alive for before fading out
+//    time: '',
+//    // (string | optional) the class name you want to apply to that specific message
+//    class_name: 'my-sticky-class'
+//  });
 
 
   // sparkline plugin

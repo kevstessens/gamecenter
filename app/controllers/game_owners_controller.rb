@@ -6,7 +6,9 @@ class GameOwnersController < ApplicationController
   def index
     @game_owners = GameOwner.all
     @gamers = current_game_owner.game.users
-    @gamers = User.all
+    @gamers = User.all      # Remove when whorking.
+    @last_achievements = Achievement.where(:game => current_game_owner.game).all
+
   end
 
   # GET /game_owners/1
@@ -30,7 +32,7 @@ class GameOwnersController < ApplicationController
 
     respond_to do |format|
       if @game_owner.save
-        format.html { redirect_to @game_owner, notice: 'Game owner was successfully created.' }
+        format.html { redirect_to @game_owner, notice: 'Usuario creado exitosamente' }
         format.json { render :show, status: :created, location: @game_owner }
       else
         format.html { render :new }
@@ -44,7 +46,7 @@ class GameOwnersController < ApplicationController
   def update
     respond_to do |format|
       if @game_owner.update(game_owner_params)
-        format.html { redirect_to @game_owner, notice: 'Game owner was successfully updated.' }
+        format.html { redirect_to root_path, notice: 'Tus datos fueron actualizados!' }
         format.json { render :show, status: :ok, location: @game_owner }
       else
         format.html { render :edit }

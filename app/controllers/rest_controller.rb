@@ -8,6 +8,7 @@ class RestController < ActionController::Base
     path_to_encode = request.fullpath[0..(signature.length+1)*-1]+game.secret_key+"/"
 
     respond_to do |format|
+
       if signature == createsig(path_to_encode)
         if user.nil?
           user = User.new

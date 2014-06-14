@@ -21,7 +21,7 @@
           <th>Puntos</th>
           <th>Creado en</th>
           <th>Estado</th>
-          <th></th>
+          <th>Opciones</th>
         </tr>
         </thead>
         <tbody>
@@ -35,23 +35,27 @@
                   <%else%>
                   <td><span class="label label-important">Inactivo</span></td>
             <% end %>
-          <td>
-            <div class="btn-group">
-              <a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#">
-                Action
-                <span class="caret"></span>
-              </a>
-              <ul class="dropdown-menu pull-right">
-                <%if achievement.active %>
-                    <li><a href="<%=edit_achievement_path(achievement)%>"><i class="icon-edit"></i> Edit</a></li>
+
+              <%if achievement.active %>
+
+                  <td>Sin opciones</td>
                 <%else%>
-                    <li><a href="<%=achievements_activate_path(achievement)%>"><i class="icon-eye-open"></i> Habilitar</a></li>
+              <td>
+                <div class="btn-group">
+                  <a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="icon-cog"></i>
+                    <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu pull-right">
+
+                  <li><a href="<%=achievements_activate_path(achievement)%>"><i class="icon-eye-open"></i> Habilitar</a></li>
                     <li><a href="<%=edit_achievement_path(achievement)%>"><i class="icon-edit"></i> Editar</a></li>
                     <li><a href="<%=achievement_path(achievement, method: :delete)%>"><i class="icon-trash"></i> Borrar</a></li>
-              <% end %>
               </ul>
-            </div>
-          </td>
+
+                </div>
+              </td>
+              <% end %>
         </tr>
               <% end %>
         </tbody>

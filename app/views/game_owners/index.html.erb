@@ -169,7 +169,7 @@
 
 <!-- CHARTS  -->
 
-<div class="row-fluid">
+<div class="row-fluid" style="margin-top: 10px;">
 
   <div class="widget widget-padding span12">
     <div class="widget-header">
@@ -187,7 +187,7 @@
           <a href="javascript:void(0)" data-toggle="modal" data-target="#task_modal_<%= gamer.id%>">
             <img src="<%= gamer.image%>" class="image" style="margin-left: 13px;">
             <div class="widget">
-              <input class="knob" data-width="75" data-height="75" data-displayInput=false data-readOnly=true data-thickness=".3" value="55">
+              <input class="knob" data-width="75" data-height="75" data-displayInput=false data-readOnly=true data-thickness=".3" value="60">
             </div>
             <p><%= gamer.name%></p>
           </a>
@@ -208,7 +208,7 @@
   <div class="widget span12">
     <div class="widget-header">
       <i class="icon-comment-alt"></i>
-      <h5>Recent Comments</h5>
+      <h5>Logros recientes</h5>
       <div class="widget-buttons">
         <a href="javascript:void(0)" class="collapse" data-collapsed="false"><i data-title="Collapse" class="icon-chevron-up"></i></a>
       </div>
@@ -216,78 +216,33 @@
     <div class="widget-body" style="height:310px;overflow:hidden">
       <div class="widget-comments clearfix slimscroll">
         <ul>
-          <li>
-            <img src="assets/img/avatars/04.jpg" class="avatar"/>
-            <div class="comment-bubble">
-              <h4>Anthony Newsfeed - <strong>Anthony23</strong></h4>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna ligula, mattis...
-              <div class="date">Thursday</div>
-              <div class="settings">
-                <a href="javascript:void(0)" class="tip" data-title="Reply"><i class="icon-reply"></i></a><a href="javascript:void(0)" class="tip" data-title="Delete"><i class="icon-trash"></i></a><a href="javascript:void(0)" class="tip" data-title="Edit"><i class="icon-edit"></i></a>
-              </div>
-            </div>
-          </li>
-          <li>
-            <img src="assets/img/avatars/05.jpg" class="avatar"/>
-            <div class="comment-bubble">
-              <h4>Christian Tomshed - <strong>Christian01</strong></h4>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna ligula, mattis...
-              <div class="date">Friday</div>
-              <div class="settings">
-                <a href="javascript:void(0)" class="tip" data-title="Reply"><i class="icon-reply"></i></a><a href="javascript:void(0)" class="tip" data-title="Delete"><i class="icon-trash"></i></a><a href="javascript:void(0)" class="tip" data-title="Edit"><i class="icon-edit"></i></a>
-              </div>
-            </div>
-          </li>
-          <li>
-            <img src="assets/img/avatars/06.jpg" class="avatar"/>
-            <div class="comment-bubble">
-              <h4>Bill Feenhound - <strong>Bill98</strong></h4>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna ligula, mattis...
-              <div class="date">Sunday</div>
-              <div class="settings">
-                <a href="javascript:void(0)" class="tip" data-title="Reply"><i class="icon-reply"></i></a><a href="javascript:void(0)" class="tip" data-title="Delete"><i class="icon-trash"></i></a><a href="javascript:void(0)" class="tip" data-title="Edit"><i class="icon-edit"></i></a>
-              </div>
-            </div>
-          </li>
-          <li>
-            <img src="assets/img/avatars/03.jpg" class="avatar"/>
-            <div class="comment-bubble">
-              <h4>Bill Feenhound - <strong>Bill98</strong></h4>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna ligula, mattis...
-              <div class="date">Sunday</div>
-              <div class="settings">
-                <a href="javascript:void(0)" class="tip" data-title="Reply"><i class="icon-reply"></i></a><a href="javascript:void(0)" class="tip" data-title="Delete"><i class="icon-trash"></i></a><a href="javascript:void(0)" class="tip" data-title="Edit"><i class="icon-edit"></i></a>
-              </div>
-            </div>
-          </li>
-          <li>
-            <img src="assets/img/avatars/04.jpg" class="avatar"/>
-            <div class="comment-bubble">
-              <h4>Bill Feenhound - <strong>Bill98</strong></h4>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna ligula, mattis...
-              <div class="date">Sunday</div>
-              <div class="settings">
-                <a href="javascript:void(0)" class="tip" data-title="Reply"><i class="icon-reply"></i></a><a href="javascript:void(0)" class="tip" data-title="Delete"><i class="icon-trash"></i></a><a href="javascript:void(0)" class="tip" data-title="Edit"><i class="icon-edit"></i></a>
-              </div>
-            </div>
-          </li>
-          <li>
-            <img src="assets/img/avatars/05.jpg" class="avatar"/>
-            <div class="comment-bubble">
-              <h4>Bill Feenhound - <strong>Bill98</strong></h4>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna ligula, mattis...
-              <div class="date">Sunday</div>
-              <div class="settings">
-                <a href="javascript:void(0)" class="tip" data-title="Reply"><i class="icon-reply"></i></a><a href="javascript:void(0)" class="tip" data-title="Delete"><i class="icon-trash"></i></a><a href="javascript:void(0)" class="tip" data-title="Edit"><i class="icon-edit"></i></a>
-              </div>
-            </div>
-          </li>
+          <% if @last_achievements.count == 0%>
+          <div> Ningún usuario ha obtenido logros en tu juego aún.</div>
+              <% else %>
+          <% @last_achievements.each do |achievement| %>
+              <% if achievement.users.last.nil?%>
+                      <li>
+                        <img src="<%= achievement.image_url(:thumb)%>" class="avatar" style="margin-top: 0px;"/>
+                        <div class="comment-bubble">
+                          <h4><%= achievement.name%>  - <strong>Ningún usuario lo ha logrado aún</strong></h4>
+                          <%= achievement.description%>
+                        </div>
+                      </li>
+
+                      <% else %>
+                <li>
+                    <img src="<%= achievement.users.last.image%>" class="avatar"/>
+                    <div class="comment-bubble">
+                      <h4><%= achievement.users.last.name%> - <strong><%= achievement.name%></strong></h4>
+                      <%= achievement.description%>
+                    </div>
+                  </li>
+              <% end %>
+              <% end %>
+          <% end %>
         </ul>
       </div>
     </div><!--/widget-body-->
-    <div class="widget-footer">
-      <a href="javascript:void(0)" class="pull-right btn btn-small"><i class="icon-plus"></i> Load More</a>
-    </div>
   </div> <!-- /widget span5 -->
 </div> <!-- /row-fluid -->
 

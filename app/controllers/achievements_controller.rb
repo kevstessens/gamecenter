@@ -81,7 +81,7 @@ class AchievementsController < ApplicationController
   def update
     respond_to do |format|
       if @achievement.update(achievement_params)
-        format.html { redirect_to @achievement, notice: 'Achievement was successfully updated.' }
+        format.html { redirect_to edit_game_path(@achievement.game), notice: 'Se ha actualizado su logro' }
         format.json { render :show, status: :ok, location: @achievement }
       else
         format.html { render :edit }
