@@ -23,6 +23,7 @@ class GamesController < ApplicationController
 
   # GET /games/1/edit
   def edit
+    @game=current_game_owner.game
     @achievements = Achievement.where(:game => current_game_owner.game).all
   end
 

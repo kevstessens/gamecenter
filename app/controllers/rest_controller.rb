@@ -1,7 +1,7 @@
 class RestController < ActionController::Base
 
   def persist_achievement
-    game = Game.find(params['game_id'].to_i)
+    game = Game.find_by game_key: params['game_id'].to_i
     user = User.find_by uid: params['user_id'].to_i
     achievement = Achievement.find(params['achievement_id'].to_i)
     signature = request.fullpath.split("/").last
@@ -37,7 +37,7 @@ class RestController < ActionController::Base
   end
 
   def user_achievements
-    game = Game.find(params['game_id'].to_i)
+    game = Game.find_by game_key: params['game_id'].to_i
     user = User.find_by uid: params['user_id'].to_i
     signature = request.fullpath.split("/").last
     path_to_encode = request.fullpath[0..(signature.length+1)*-1]+game.secret_key+"/"
