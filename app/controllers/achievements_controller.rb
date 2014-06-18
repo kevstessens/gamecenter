@@ -1,5 +1,7 @@
 class AchievementsController < ApplicationController
   before_action :set_achievement, only: [:show, :edit, :update, :destroy, :activate]
+  before_filter :authenticate_game_owner!
+
 
   # GET /achievements
   # GET /achievements.json

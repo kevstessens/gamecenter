@@ -1,5 +1,7 @@
 class RestController < ActionController::Base
 
+
+
   def persist_achievement
     game = Game.find_by game_key: params['game_id'].to_i
     user = User.find_by uid: params['user_id'].to_i

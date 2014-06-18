@@ -1,12 +1,13 @@
 class GameOwnersController < ApplicationController
   before_action :set_game_owner, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_game_owner!
+
 
   # GET /game_owners
   # GET /game_owners.json
   def index
     @game_owners = GameOwner.all
     @gamers = current_game_owner.game.users
-    @gamers = User.all      # Remove when whorking.
     @last_achievements = Achievement.where(:game => current_game_owner.game).all
 
   end

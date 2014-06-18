@@ -29,31 +29,31 @@
 <div class="row-fluid">
   <div class="overview_boxes">
     <div class="box_row clearfix">
-      <div class="widget-tasks-statistics">
-        <div class="userstats clearfix" style="margin-top: 25px;">
-          <a href="javascript:void(0)" data-toggle="modal" data-target="#example_modal2">
-            <div class="white">
-              <i style="color:#E28271" class="icon-eye-open"></i>
-              <p style="color:#E28271">+85%</p>
-            </div>
-            <div class="widget">
-              <input class="knob" data-width="120" data-height="120" data-displayInput=false data-readOnly=true data-thickness=".15" value="85">
-            </div>
-            <p><strong>+530</strong>Visits this month</p>
-          </a>
-        </div>
-      </div>
+      <!--<div class="widget-tasks-statistics">-->
+        <!--<div class="userstats clearfix" style="margin-top: 25px;">-->
+          <!--<a href="javascript:void(0)" data-toggle="modal" data-target="#example_modal2">-->
+            <!--<div class="white">-->
+              <!--<i style="color:#E28271" class="icon-eye-open"></i>-->
+              <!--<p style="color:#E28271">+85%</p>-->
+            <!--</div>-->
+            <!--<div class="widget">-->
+              <!--<input class="knob" data-width="120" data-height="120" data-displayInput=false data-readOnly=true data-thickness=".15" value="85">-->
+            <!--</div>-->
+            <!--<p><strong>+530</strong>Visits this month</p>-->
+          <!--</a>-->
+        <!--</div>-->
+      <!--</div>-->
       <div class="widget-tasks-statistics">
         <div class="userstats clearfix" style="margin-top: 25px;">
           <a href="javascript:void(0)" data-toggle="modal" data-target="#example_modal2">
             <div class="white">
               <i style="color:#98E5EA" class="icon-user"></i>
-              <p style="color:#98E5EA">+13%</p>
+              <p style="color:#98E5EA"><%= current_game_owner.game.users.count%></p>
             </div>
             <div class="widget">
-              <input class="knob" data-width="120" data-height="120" data-displayInput=false data-readOnly=true data-thickness=".15" value="13">
+              <input class="knob" data-width="120" data-height="120" data-displayInput=false data-readOnly=true data-thickness=".15" value="100">
             </div>
-            <p><strong>57</strong>New Users</p>
+            <p><strong><%= current_game_owner.game.users.count%></strong>Usuarios jugando</p>
 
           </a>
         </div>
@@ -62,13 +62,13 @@
         <div class="userstats clearfix" style="margin-top: 25px;">
           <a href="javascript:void(0)" data-toggle="modal" data-target="#example_modal2">
             <div class="white">
-              <i style="color:#AEEA98" class="icon-bullhorn"></i>
-              <p style="color:#AEEA98">+15%</p>
+              <i style="color:#AEEA98" class="icon-dashboard"></i>
+              <p style="color:#AEEA98"><%= 2000 - (current_game_owner.game.used_points.to_i)%></p>
             </div>
             <div class="widget">
-              <input class="knob" data-width="120" data-height="120" data-displayInput=false data-readOnly=true data-thickness=".15" value="15">
+              <input class="knob" data-width="120" data-height="120" data-displayInput=false data-readOnly=true data-thickness=".15" value="<%= (((2000-current_game_owner.game.used_points.to_i)*100)/2000).to_i %>">
             </div>
-            <p><strong>35/235</strong>Finished Tickets</p>
+            <p><strong><%=current_game_owner.game.used_points%>/2000</strong>Puntos restantes</p>
           </a>
         </div>
       </div>
@@ -102,43 +102,43 @@
           <a href="javascript:void(0)" data-toggle="modal" data-target="#example_modal2">
             <div class="white">
               <i style="color:#98AEEA" class="icon-thumbs-up"></i>
-              <p style="color:#98AEEA">+55%</p>
+              <p style="color:#98AEEA"><%= current_game_owner.game.achievements.count%></p>
             </div>
             <div class="widget">
-              <input class="knob" data-width="120" data-height="120" data-displayInput=false data-readOnly=true data-thickness=".15" value="55">
+              <input class="knob" data-width="120" data-height="120" data-displayInput=false data-readOnly=true data-thickness=".15" value="<%= 100 - (2000 - (current_game_owner.game.used_points.to_i))%>">
             </div>
-            <p><strong>$14,230</strong>Income</p>
+            <p><strong><%= current_game_owner.game.achievements.count%></strong>Logros</p>
           </a>
         </div>
       </div>
-      <div class="widget-tasks-statistics">
-        <div class="userstats clearfix" style="margin-top: 25px;">
-          <a href="javascript:void(0)" data-toggle="modal" data-target="#example_modal2">
-            <div class="white">
-              <i style="color:#EA98AB" class="icon-credit-card"></i>
-              <p style="color:#EA98AB">+35%</p>
-            </div>
-            <div class="widget">
-              <input class="knob" data-width="120" data-height="120" data-displayInput=false data-readOnly=true data-thickness=".15" value="35">
-            </div>
-            <p><strong>152</strong>New Likes</p>
-          </a>
-        </div>
-      </div>
-      <div class="widget-tasks-statistics">
-        <div class="userstats clearfix" style="margin-top: 25px;">
-          <a href="javascript:void(0)" data-toggle="modal" data-target="#example_modal2">
-            <div class="white">
-              <i style="color:#F6BF99" class="icon-phone"></i>
-              <p style="color:#F6BF99">+97%</p>
-            </div>
-            <div class="widget">
-              <input class="knob" data-width="120" data-height="120" data-displayInput=false data-readOnly=true data-thickness=".15" value="97">
-            </div>
-            <p><strong>592</strong>Leads Generated</p>
-          </a>
-        </div>
-      </div>
+      <!--<div class="widget-tasks-statistics">-->
+        <!--<div class="userstats clearfix" style="margin-top: 25px;">-->
+          <!--<a href="javascript:void(0)" data-toggle="modal" data-target="#example_modal2">-->
+            <!--<div class="white">-->
+              <!--<i style="color:#EA98AB" class="icon-credit-card"></i>-->
+              <!--<p style="color:#EA98AB">+35%</p>-->
+            <!--</div>-->
+            <!--<div class="widget">-->
+              <!--<input class="knob" data-width="120" data-height="120" data-displayInput=false data-readOnly=true data-thickness=".15" value="35">-->
+            <!--</div>-->
+            <!--<p><strong>152</strong>New Likes</p>-->
+          <!--</a>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="widget-tasks-statistics">-->
+        <!--<div class="userstats clearfix" style="margin-top: 25px;">-->
+          <!--<a href="javascript:void(0)" data-toggle="modal" data-target="#example_modal2">-->
+            <!--<div class="white">-->
+              <!--<i style="color:#F6BF99" class="icon-phone"></i>-->
+              <!--<p style="color:#F6BF99">+97%</p>-->
+            <!--</div>-->
+            <!--<div class="widget">-->
+              <!--<input class="knob" data-width="120" data-height="120" data-displayInput=false data-readOnly=true data-thickness=".15" value="97">-->
+            <!--</div>-->
+            <!--<p><strong>592</strong>Leads Generated</p>-->
+          <!--</a>-->
+        <!--</div>-->
+      <!--</div>-->
       <!--
                     <div>
                       <div class="circle">
@@ -185,11 +185,20 @@
 
       <div class="userstats clearfix">
           <a href="javascript:void(0)" data-toggle="modal" data-target="#task_modal_<%= gamer.id%>">
-            <img src="<%= gamer.image%>" class="image" style="margin-left: 13px;">
+            <%if gamer.image.nil?%>
+                <img src="/assets/flip.png" class="image" style="margin-left: 3px;">
+           <% else %>
+             <img src="<%= gamer.image%>" class="image" style="margin-left: 13px;">
+            <% end%>
             <div class="widget">
               <input class="knob" data-width="75" data-height="75" data-displayInput=false data-readOnly=true data-thickness=".3" value="60">
             </div>
-            <p><%= gamer.name%></p>
+
+            <%if gamer.name.nil?%>
+                <p>Sin nombre</p>
+            <% else %>
+                <p><%= gamer.name%></p>
+            <% end%>
           </a>
         </div>
 
@@ -231,9 +240,9 @@
 
                       <% else %>
                 <li>
-                    <img src="<%= achievement.users.last.image%>" class="avatar"/>
+                    <img src="<%= achievement.users.last.image%>" class="avatar" style="margin-top: 0px;"/>
                     <div class="comment-bubble">
-                      <h4><%= achievement.users.last.name%> - <strong><%= achievement.name%></strong></h4>
+                      <h4><%= achievement.name%> - <strong><%= achievement.users.last.name%></strong></h4>
                       <%= achievement.description%>
                     </div>
                   </li>
