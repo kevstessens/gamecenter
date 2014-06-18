@@ -16,19 +16,21 @@ class RestController < ActionController::Base
           user.provider = "facebook"
           user.save!
         end
-        unless user.achievements.include? achievement
+        if !(user.achievements.include? achievement)
           user.achievements << achievement
           user.save!
-          msg = { :status => "ok", :message => "Already added achievement!", :html => "<b>Already added achievement!</b>" }
+          msg = { :status => "10", :message => "Success!", :html => "<b>Success!</b>" }
           format.json  { render :json => msg }
-        end
-        msg = { :status => "ok", :message => "Success!", :html => "<b>Success!</b>" }
+        else
+        msg = { :status => "30", :message => "Already added achievement!", :html => "<b>Already added achievement!</b>" }
         format.json  { render :json => msg }
         format.html { redirect_to user_path(user)}
-      end
-      msg = { :status => "ok", :message => "Incorrect signature!", :html => "<b>Incorrect signature!</b>" }
+        end
+      else
+      msg = { :status => "20", :message => "Incorrect signature!", :html => "<b>Incorrect signature!</b>" }
       format.json  { render :json => msg }
       format.html { redirect_to root_path}
+        end
     end
 
 
@@ -45,10 +47,10 @@ class RestController < ActionController::Base
     respond_to do |format|
       if signature == createsig(path_to_encode)
 
-        format.json  { render :json => {:user =>user.to_json(:include => [:achievements]) }}
+        format.json  { render :json => {:user =>user.to_json(:include => [:achievements]), :status=> "40" }}
         format.html { redirect_to user_path(user)} #this should showonly the achievements for the specific game.
       else
-        msg = { :status => "ok", :message => "Incorrect signature!", :html => "<b>Incorrect signature!</b>" }
+        msg = { :status => "20", :message => "Incorrect signature!", :html => "<b>Incorrect signature!</b>" }
         format.json  { render :json => msg }
         format.html { redirect_to root_path}
       end
