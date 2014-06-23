@@ -9,4 +9,13 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
+  # overriding CanCan::ControllerAdditions
+  def current_ability
+    if current_account.kind_of?(GameOwner)
+      @current_ability ||= OwnerAbility.new(current_account)
+    else
+      @current_ability ||= UserAbility.new(current_account)
+    end
+  end
+
 end

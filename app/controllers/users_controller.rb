@@ -1,12 +1,39 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_filter :authenticate_game_owner!
+  before_action :check_permissions, only: [:show, :edit, :update, :destroy, :index]
+  before_filter :authenticate_game_owner!, :unless => :skip_filter?
 
+  def skip_filter?
+    return !current_user.nil?
+  end
+
+  def check_permissions
+    unless current_user.nil? and current_game_owner.nil?
+
+      unless !current_user.nil? and current_game_owner.nil?
+      redirect_to users_path, alert: 'No tiene permiso para acceder'
+      end
+      end
+  end
 
   # GET /users
   # GET /users.json
   def index
     @users = User.all
+    @games = []
+    current_user.achievements.each do |achievement|
+      unless @games.include? achievement.game
+        @games << achievement.game
+      end
+    end
+    graph = Koala::Facebook::API.new(current_user.oauth_token)
+    friends = graph.get_connections("me", "friends")
+    @friends_count = 0
+    friends.each do |friend|
+      unless (User.find_by uid: friend[:id]).nil?
+        @friends_count = @friends_count + 1
+      end
+    end
   end
 
   # GET /users/1
@@ -67,6 +94,9 @@ class UsersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
+      if (!current_user.nil?) and (@user != current_user)
+        redirect_to users_path, alert: 'No tiene permiso para acceder'
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

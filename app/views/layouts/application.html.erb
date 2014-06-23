@@ -1,4 +1,4 @@
-<%if current_game_owner.nil?%>
+<%if current_game_owner.nil? && current_user.nil?%>
 <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -34,7 +34,7 @@
     <html lang="en">
     <head>
       <meta charset="utf-8">
-      <title>Kamecenter - Dashboard for <%= current_game_owner.email%></title>
+      <title>Kamecenter - Dashboard</title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="author" content="Bluth Company">
       <link rel="shortcut icon" href="/assets/favicon.html">
@@ -78,9 +78,14 @@
                 <!--<li><a id="notifications" data-notification="3" href="#"><i class="icon-globe"></i> Notifications</a></li>-->
               </ul>
               <ul class="pull-right">
-
-                <li>                <%=link_to '<i class="icon-off"></i> Cerrar sesión'.html_safe, destroy_game_owner_session_path, method: :delete%>
+                <% if current_user.nil?%>
+              <li>                <%=link_to '<i class="icon-off"></i> Cerrar sesión'.html_safe, destroy_game_owner_session_path, method: :delete%>
                 </li>
+                    <% else %>
+                    <li>
+                      <%= link_to '<i class="icon-off"></i> Cerrar sesión'.html_safe, signout_path, id: "sign_out" %>
+                    </li>
+                <% end %>
               </ul>
             </div>
 
@@ -99,7 +104,9 @@
       <div class="container-fluid">
 
         <!-- Side menu -->
-        <div class="sidebar-nav nav-collapse collapse">
+        <% if current_user.nil?%>
+
+      <div class="sidebar-nav nav-collapse collapse">
           <div class="user_side clearfix">
             <% if current_game_owner.game.image_url(:thumb).nil?%>
                 <img src="/assets/flip.png" alt="Odinn god of Thunder">
@@ -125,6 +132,24 @@
                 <a class="accordion-toggle b_C1F8A9" href="<%= game_info_path%>"><i class="icon-key"></i> <span>Credenciales</span></a>
               </div>
             </div>
+                         <% else %>
+            <div class="sidebar-nav nav-collapse collapse">
+              <div class="user_side clearfix">
+                <% if current_user.image.nil?%>
+                    <img src="/assets/flip.png" alt="No hay foto">
+                <% else%>
+                    <img src="<%= current_user.image%>" alt="<%= current_user.name%>">
+                <%end%>
+                <h5><%=current_user.name%></h5>
+              </div>
+              <div class="accordion-group">
+                <div class="accordion-heading">
+                  <a class="accordion-toggle active b_F79999" href="<%= users_path%>"><i class="icon-dashboard"></i> <span>Inicio</span></a>
+                </div>
+              </div>
+              <%end %>
+
+
 
             <!--<div class="accordion-group">-->
               <!--<div class="accordion-heading">-->
@@ -140,15 +165,6 @@
         </div>
         <!-- /Side menu -->
 
-
-        <!--<div id="user-widget">-->
-        <!--<% if current_user %>-->
-            <!--Welcome <strong><%= current_user.name %></strong>!-->
-            <!--<%= link_to "Sign out", signout_path, id: "sign_out" %>-->
-            <!--<% else %>-->
-            <!--<%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>-->
-            <!--<% end %>-->
-        <!--</div>-->
 
         <%= yield %>
 

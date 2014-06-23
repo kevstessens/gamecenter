@@ -1,7 +1,20 @@
 class GameOwnersController < ApplicationController
   before_action :set_game_owner, only: [:show, :edit, :update, :destroy]
-  before_filter :authenticate_game_owner!
+  before_action :check_permissions, only: [:show, :edit, :update, :destroy, :index]
+  before_filter :authenticate_game_owner!, :unless => :skip_filter?
 
+  def skip_filter?
+    return !current_user.nil?
+  end
+
+  def check_permissions
+    unless current_user.nil? and current_game_owner.nil?
+
+      unless current_user.nil? and !current_game_owner.nil?
+      redirect_to users_path, alert: 'No tiene permiso para acceder'
+      end
+      end
+  end
 
   # GET /game_owners
   # GET /game_owners.json
@@ -70,6 +83,9 @@ class GameOwnersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_game_owner
       @game_owner = GameOwner.find(params[:id])
+      if @game_owner != current_game_owner
+        redirect_to root_path, alert: 'No tiene permiso para acceder a este usuario'
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

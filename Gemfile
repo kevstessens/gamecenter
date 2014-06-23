@@ -38,6 +38,10 @@ gem 'rails_12factor', group: :production
 
 ruby "2.1.1"
 
+gem "koala", "~> 1.10.0rc"
+gem 'cancancan', '~> 1.8'
+
+
 
 
 

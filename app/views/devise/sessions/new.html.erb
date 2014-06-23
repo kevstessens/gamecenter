@@ -55,6 +55,16 @@
             <p>Querés registrar tu juego? <a href=" <%=new_registration_path(resource_name)%>">Crear cuenta</a></p>
           </div>
         </div><!--/row-fluid-->
+
+        <div id="user-widget">
+        <% if current_user %>
+            Welcome <strong><%= current_user.name %></strong>!
+            <%= link_to "Sign out", signout_path, id: "sign_out" %>
+            <% else %>
+            <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
+            <% end %>
+
+        <!--</div>-->
       </div><!--/span10-->
     </div><!--/row-fluid-->
   </div><!--/.fluid-container-->

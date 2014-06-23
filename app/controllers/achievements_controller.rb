@@ -1,7 +1,20 @@
 class AchievementsController < ApplicationController
   before_action :set_achievement, only: [:show, :edit, :update, :destroy, :activate]
-  before_filter :authenticate_game_owner!
+  before_action :check_permissions, only: [:show, :edit, :update, :destroy, :index]
+  before_filter :authenticate_game_owner!, :unless => :skip_filter?
 
+  def skip_filter?
+    return !current_user.nil?
+  end
+
+  def check_permissions
+    unless current_user.nil? and current_game_owner.nil?
+
+      unless current_user.nil? and !current_game_owner.nil?
+      redirect_to users_path, alert: 'No tiene permiso para acceder'
+    end
+    end
+  end
 
   # GET /achievements
   # GET /achievements.json

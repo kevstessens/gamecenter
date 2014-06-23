@@ -17,4 +17,12 @@ class User < ActiveRecord::Base
     end
   end
 
+  def points
+    points = 0
+    self.achievements.each do |ach|
+      points = points+ ach.points
+    end
+    return points
+  end
+
 end
