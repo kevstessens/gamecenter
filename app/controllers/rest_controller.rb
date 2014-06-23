@@ -1,39 +1,50 @@
 class RestController < ActionController::Base
 
-
-
   def persist_achievement
     game = Game.find_by game_key: params['game_id'].to_i
-    user = User.find_by uid: params['user_id'].to_i
-    achievement = Achievement.find(params['achievement_id'].to_i)
-    signature = request.fullpath.split("/").last
-    path_to_encode = request.fullpath[0..(signature.length+1)*-1]+game.secret_key+"/"
-
-    respond_to do |format|
-
-      if signature == createsig(path_to_encode)
-        if user.nil?
-          user = User.new
-          user.uid = params['user_id'].to_i
-          user.provider = "facebook"
-          user.save!
-        end
-        if !(user.achievements.include? achievement)
-          user.achievements << achievement
-          user.save!
-          msg = { :status => "10", :message => "Success!", :html => "<b>Success!</b>" }
-          format.json  { render :json => msg }
-        else
-        msg = { :status => "30", :message => "Already added achievement!", :html => "<b>Already added achievement!</b>" }
+    if game.nil?
+      respond_to do |format|
+        msg = { :status => "40", :message => "No Game!", :html => "<b>No game!</b>" }
         format.json  { render :json => msg }
-        format.html { redirect_to user_path(user)}
+        format.html { redirect_to root_path}
+      end
+    else
+      user = User.find_by uid: params['user_id'].to_i
+      achievement = Achievement.find(params['achievement_id'].to_i)
+      signature = request.fullpath.split("/").last
+      path_to_encode = request.fullpath[0..(signature.length+1)*-1]+game.secret_key+"/"
+
+      respond_to do |format|
+
+        if signature == createsig(path_to_encode)
+          if user.nil?
+            user = User.new
+            user.uid = params['user_id'].to_i
+            user.provider = "facebook"
+            user.save!
+          end
+          if !(user.achievements.include? achievement)
+            user.achievements << achievement
+            if !(user.games.include? achievement.game)
+              user.games << achievement.game
+            end
+            user.save!
+            msg = { :status => "10", :message => "Success!", :html => "<b>Success!</b>" }
+            format.json  { render :json => msg }
+          else
+            msg = { :status => "30", :message => "Already added achievement!", :html => "<b>Already added achievement!</b>" }
+            format.json  { render :json => msg }
+            format.html { redirect_to user_path(user)}
+          end
+        else
+          msg = { :status => "20", :message => "Incorrect signature!", :html => "<b>Incorrect signature!</b>" }
+          format.json  { render :json => msg }
+          format.html { redirect_to root_path}
         end
-      else
-      msg = { :status => "20", :message => "Incorrect signature!", :html => "<b>Incorrect signature!</b>" }
-      format.json  { render :json => msg }
-      format.html { redirect_to root_path}
-        end
+      end
+
     end
+
 
 
   end
@@ -41,6 +52,14 @@ class RestController < ActionController::Base
   def user_achievements
     game = Game.find_by game_key: params['game_id'].to_i
     user = User.find_by uid: params['user_id'].to_i
+
+    if game.nil? or user.nil?
+      respond_to do |format|
+        msg = { :status => "40", :message => "No Game!", :html => "<b>No game!</b>" }
+        format.json  { render :json => msg }
+        format.html { redirect_to root_path}
+      end
+    end
     signature = request.fullpath.split("/").last
     path_to_encode = request.fullpath[0..(signature.length+1)*-1]+game.secret_key+"/"
     achievements = user.achievements.where(:game => game);

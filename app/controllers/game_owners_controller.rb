@@ -9,11 +9,10 @@ class GameOwnersController < ApplicationController
 
   def check_permissions
     unless current_user.nil? and current_game_owner.nil?
-
       unless current_user.nil? and !current_game_owner.nil?
       redirect_to users_path, alert: 'No tiene permiso para acceder'
       end
-      end
+    end
   end
 
   # GET /game_owners
@@ -21,6 +20,7 @@ class GameOwnersController < ApplicationController
   def index
     @game_owners = GameOwner.all
     @gamers = current_game_owner.game.users
+    test= Kamecenter.post_achievement("1111","20","12345","101010")
     @last_achievements = Achievement.where(:game => current_game_owner.game).all
 
   end
