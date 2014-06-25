@@ -1,7 +1,7 @@
 class RestController < ActionController::Base
 
   def persist_achievement
-    game = Game.find_by game_key: params['game_id'].to_i
+    game = Game.find_by game_key: params['game_id']
     if game.nil?
       respond_to do |format|
         msg = { :status => "40", :message => "No Game!", :html => "<b>No game!</b>" }
@@ -57,7 +57,6 @@ class RestController < ActionController::Base
       respond_to do |format|
         msg = { :status => "40", :message => "No Game!", :html => "<b>No game!</b>" }
         format.json  { render :json => msg }
-        format.html { redirect_to root_path}
       end
     end
     signature = request.fullpath.split("/").last
