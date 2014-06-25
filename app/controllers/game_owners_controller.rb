@@ -20,7 +20,6 @@ class GameOwnersController < ApplicationController
   def index
     @game_owners = GameOwner.all
     @gamers = current_game_owner.game.users
-    test= Kamecenter.post_achievement("1111","20","12345","101010")
     @last_achievements = Achievement.where(:game => current_game_owner.game).all
 
   end
