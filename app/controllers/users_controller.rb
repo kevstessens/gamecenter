@@ -26,14 +26,15 @@ class UsersController < ApplicationController
         @games << achievement.game
       end
     end
-    graph = Koala::Facebook::API.new(current_user.oauth_token)
-    friends = graph.get_connections("me", "friends")
-    @friends_count = 0
-    friends.each do |friend|
-      unless (User.find_by uid: friend[:id]).nil?
-        @friends_count = @friends_count + 1
-      end
-    end
+    #graph = Koala::Facebook::API.new(current_user.oauth_token)
+    #friends = graph.get_connections("me", "friends")
+    #@friends_count = 0
+    #friends.each do |friend|
+    #  unless (User.find_by uid: friend[:id]).nil?
+    #    @friends_count = @friends_count + 1
+    #  end
+    #end
+    @friends_count=0
   end
 
   # GET /users/1
