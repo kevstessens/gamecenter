@@ -8,11 +8,11 @@ class GamesController < ApplicationController
   end
 
   def check_permissions
-    unless current_user.nil? and current_game_owner.nil?
-      unless current_user.nil? and !current_game_owner.nil?
-        redirect_to users_path, alert: 'No tiene permiso para acceder'
-      end
-    end
+    #unless current_user.nil? and current_game_owner.nil?
+    #  unless current_user.nil? and !current_game_owner.nil?
+    #    redirect_to users_path, alert: 'No tiene permiso para acceder'
+    #  end
+    #end
   end
 
   # GET /games
@@ -24,6 +24,38 @@ class GamesController < ApplicationController
   # GET /games/1
   # GET /games/1.json
   def show
+    graph = Koala::Facebook::API.new(current_user.oauth_token)
+    friends = graph.get_connections("me", "friends")
+    @friends_count = 0
+    @gamers = []
+    friends.each do |friend|
+      unless (User.find_by uid: friend["id"]).nil?
+        friend = User.find_by uid: friend["id"]
+        if friend.games.include? @game
+          @gamers << friend
+        end
+        @friends_count = @friends_count + 1
+      end
+    end
+
+    @last_achievements = current_user.achievements.where(:game_id => @game.id).all
+
+    @user_achievements =[]
+    unless @gamers.nil?
+      @gamers.each do |gamer|
+        gamer.achievements.each do |ach|
+          if ach.game_id == @game.id
+            @user_achievements << ach
+          end
+        end
+      end
+    end
+
+    @game_points = 0
+    @last_achievements.each do |ac|
+      @game_points = @game_points + ac.points
+    end
+
   end
 
   def game_info
@@ -88,8 +120,10 @@ class GamesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_game
       @game = Game.find(params[:id])
-      if @game != current_game_owner.game
-        redirect_to root_path, alert: 'No tiene permiso para acceder a este juego'
+      if current_user.nil?
+        if @game != current_game_owner.game
+          redirect_to root_path, alert: 'No tiene permiso para acceder a este juego'
+        end
       end
     end
 

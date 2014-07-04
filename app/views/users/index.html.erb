@@ -27,6 +27,147 @@
 <%end%>
 
 
+<div class="row-fluid">
+  <div class="overview_boxes">
+    <div class="box_row clearfix">
+      <!--<div class="widget-tasks-statistics">-->
+      <!--<div class="userstats clearfix" style="margin-top: 25px;">-->
+      <!--<a href="javascript:void(0)" data-toggle="modal" data-target="#example_modal2">-->
+      <!--<div class="white">-->
+      <!--<i style="color:#E28271" class="icon-eye-open"></i>-->
+      <!--<p style="color:#E28271">+85%</p>-->
+      <!--</div>-->
+      <!--<div class="widget">-->
+      <!--<input class="knob" data-width="120" data-height="120" data-displayInput=false data-readOnly=true data-thickness=".15" value="85">-->
+      <!--</div>-->
+      <!--<p><strong>+530</strong>Visits this month</p>-->
+      <!--</a>-->
+      <!--</div>-->
+      <!--</div>-->
+      <div class="widget-tasks-statistics">
+        <div class="userstats clearfix" style="margin-top: 25px;">
+          <a href="javascript:void(0)" data-toggle="modal" data-target="#example_modal2">
+            <div class="white">
+              <i style="color:#98E5EA" class="icon-user"></i>
+              <p style="color:#98E5EA"><%= @friends_count%></p>
+            </div>
+            <div class="widget">
+              <input class="knob" data-width="120" data-height="120" data-displayInput=false data-readOnly=true data-thickness=".15" value="100">
+            </div>
+            <p><strong><%= @friends_count%></strong>Amigos</p>
+
+          </a>
+        </div>
+      </div>
+      <div class="widget-tasks-statistics">
+        <div class="userstats clearfix" style="margin-top: 25px;">
+          <a href="javascript:void(0)" data-toggle="modal" data-target="#example_modal2">
+            <div class="white">
+              <i style="color:#AEEA98" class="icon-dashboard"></i>
+              <p style="color:#AEEA98"><%= current_user.points%></p>
+            </div>
+            <div class="widget">
+              <input class="knob" data-width="120" data-height="120" data-displayInput=false data-readOnly=true data-thickness=".15" value="<%= (current_user.points * 100) / (2000*@games.count) %>">
+            </div>
+            <p><strong><%=current_user.points%></strong>Puntos obtenidos</p>
+          </a>
+        </div>
+      </div>
+      <!--
+                    <div>
+                      <div class="circle">
+                        <i style="color:#E28271" class="icon-eye-open"></i>
+                      </div>
+                      <h2>7.3k</h2>
+                      <p>Visits</p>
+                    </div>
+                    <div>
+                      <div class="circle">
+                        <i style="color:#98E5EA" class="icon-user"></i>
+                      </div>
+                      <h2>4.2k</h2>
+                      <p>Users</p>
+                    </div>
+                    <div>
+                      <div class="circle">
+                        <i style="color:#AEEA98" class="icon-bullhorn"></i>
+                      </div>
+                      <h2>235</h2>
+                      <p>Tickets</p>
+                    </div>
+                     -->
+    </div>
+    <div class="box_row clearfix">
+      <div class="widget-tasks-statistics">
+        <div class="userstats clearfix" style="margin-top: 25px;">
+          <a href="javascript:void(0)" data-toggle="modal" data-target="#example_modal2">
+            <div class="white">
+              <i style="color:#98AEEA" class="icon-thumbs-up"></i>
+              <p style="color:#98AEEA"><%= current_user.achievements.count%></p>
+            </div>
+            <div class="widget">
+              <input class="knob" data-width="120" data-height="120" data-displayInput=false data-readOnly=true data-thickness=".15" value="100">
+            </div>
+            <p><strong><%= current_user.achievements.count%></strong>Logros</p>
+          </a>
+        </div>
+      </div>
+      <!--<div class="widget-tasks-statistics">-->
+      <!--<div class="userstats clearfix" style="margin-top: 25px;">-->
+      <!--<a href="javascript:void(0)" data-toggle="modal" data-target="#example_modal2">-->
+      <!--<div class="white">-->
+      <!--<i style="color:#EA98AB" class="icon-credit-card"></i>-->
+      <!--<p style="color:#EA98AB">+35%</p>-->
+      <!--</div>-->
+      <!--<div class="widget">-->
+      <!--<input class="knob" data-width="120" data-height="120" data-displayInput=false data-readOnly=true data-thickness=".15" value="35">-->
+      <!--</div>-->
+      <!--<p><strong>152</strong>New Likes</p>-->
+      <!--</a>-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--<div class="widget-tasks-statistics">-->
+      <!--<div class="userstats clearfix" style="margin-top: 25px;">-->
+      <!--<a href="javascript:void(0)" data-toggle="modal" data-target="#example_modal2">-->
+      <!--<div class="white">-->
+      <!--<i style="color:#F6BF99" class="icon-phone"></i>-->
+      <!--<p style="color:#F6BF99">+97%</p>-->
+      <!--</div>-->
+      <!--<div class="widget">-->
+      <!--<input class="knob" data-width="120" data-height="120" data-displayInput=false data-readOnly=true data-thickness=".15" value="97">-->
+      <!--</div>-->
+      <!--<p><strong>592</strong>Leads Generated</p>-->
+      <!--</a>-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--
+                    <div>
+                      <div class="circle">
+                        <i style="color:#98AEEA" class="icon-thumbs-up"></i>
+                      </div>
+                      <h2>152</h2>
+                      <p>New Likes</p>
+                    </div>
+                    <div>
+                      <div class="circle">
+                        <i style="color:#EA98AB" class="icon-credit-card"></i>
+                      </div>
+                      <h2>$14,230</h2>
+                      <p>Income</p>
+                    </div>
+                    <div>
+                      <div class="circle">
+                        <i style="color:#F6BF99" class="icon-phone"></i>
+                      </div>
+                      <h2>92</h2>
+                      <p>Leads Generated</p>
+                    </div>
+                     -->
+    </div>
+  </div>
+</div>
+
+
 <!-- CHARTS  -->
 
 <div class="row-fluid" style="margin-top: 10px;">

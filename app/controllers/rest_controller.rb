@@ -9,7 +9,7 @@ class RestController < ActionController::Base
         format.html { redirect_to root_path}
       end
     else
-      user = User.find_by uid: params['user_id'].to_i
+      user = User.find_by uid: params['user_id']
       achievement = Achievement.find(params['achievement_id'].to_i)
       signature = request.fullpath.split("/").last
       path_to_encode = request.fullpath[0..(signature.length+1)*-1]+game.secret_key+"/"

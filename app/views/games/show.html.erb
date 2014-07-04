@@ -1,29 +1,362 @@
-<p id="notice"><%= notice %></p>
+<!-- Main window -->
+<div class="main_container" id="dashboard_page">
 
-<p>
-  <strong>Game key:</strong>
-  <%= @game.game_key %>
-</p>
 
-<p>
-  <strong>Secret key:</strong>
-  <%= @game.secret_key %>
-</p>
+<%unless notice.nil?%>
+    <div class="control-group">
+      <div class="controls">
+        <div class="alert alert-success">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          <strong>Éxito! </strong> <%= notice%>
+        </div>
+      </div>
+    </div>
+<%end%>
 
-<p>
-  <strong>Name:</strong>
-  <%= @game.name %>
-</p>
 
-<p>
-  <strong>Image:</strong>
-  <%= @game.image %>
-</p>
+<%unless alert.nil?%>
 
-<p>
-  <strong>Description:</strong>
-  <%= @game.description %>
-</p>
+    <div class="control-group">
+      <div class="controls">
+        <div class="alert alert-error">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          <strong>Error!</strong> <%= alert%>
+        </div>
+      </div>
+    </div>
+<%end%>
 
-<%= link_to 'Edit', edit_game_path(@game) %> |
-<%= link_to 'Back', games_path %>
+<div class="row-fluid">
+  <div class="overview_boxes">
+    <div class="box_row clearfix">
+      <!--<div class="widget-tasks-statistics">-->
+      <!--<div class="userstats clearfix" style="margin-top: 25px;">-->
+      <!--<a href="javascript:void(0)" data-toggle="modal" data-target="#example_modal2">-->
+      <!--<div class="white">-->
+      <!--<i style="color:#E28271" class="icon-eye-open"></i>-->
+      <!--<p style="color:#E28271">+85%</p>-->
+      <!--</div>-->
+      <!--<div class="widget">-->
+      <!--<input class="knob" data-width="120" data-height="120" data-displayInput=false data-readOnly=true data-thickness=".15" value="85">-->
+      <!--</div>-->
+      <!--<p><strong>+530</strong>Visits this month</p>-->
+      <!--</a>-->
+      <!--</div>-->
+      <!--</div>-->
+      <div class="widget-tasks-statistics">
+        <div class="userstats clearfix" style="margin-top: 25px;">
+          <a href="javascript:void(0)" data-toggle="modal" data-target="#example_modal2">
+            <div class="white">
+              <i style="color:#98E5EA" class="icon-user"></i>
+              <p style="color:#98E5EA"><%= @gamers.count%></p>
+            </div>
+            <div class="widget">
+              <input class="knob" data-width="120" data-height="120" data-displayInput=false data-readOnly=true data-thickness=".15" value="100">
+            </div>
+            <p><strong><%= @gamers.count%></strong>Amigos jugando</p>
+
+          </a>
+        </div>
+      </div>
+      <div class="widget-tasks-statistics">
+        <div class="userstats clearfix" style="margin-top: 25px;">
+          <a href="javascript:void(0)" data-toggle="modal" data-target="#example_modal2">
+            <div class="white">
+              <i style="color:#AEEA98" class="icon-dashboard"></i>
+              <p style="color:#AEEA98"><%= 2000 - (@game_points.to_i)%></p>
+            </div>
+            <div class="widget">
+              <input class="knob" data-width="120" data-height="120" data-displayInput=false data-readOnly=true data-thickness=".15" value="<%= (((2000-@game_points.to_i)*100)/2000).to_i %>">
+            </div>
+            <p><strong><%=@game_points%></strong>Puntos</p>
+          </a>
+        </div>
+      </div>
+      <!--
+                    <div>
+                      <div class="circle">
+                        <i style="color:#E28271" class="icon-eye-open"></i>
+                      </div>
+                      <h2>7.3k</h2>
+                      <p>Visits</p>
+                    </div>
+                    <div>
+                      <div class="circle">
+                        <i style="color:#98E5EA" class="icon-user"></i>
+                      </div>
+                      <h2>4.2k</h2>
+                      <p>Users</p>
+                    </div>
+                    <div>
+                      <div class="circle">
+                        <i style="color:#AEEA98" class="icon-bullhorn"></i>
+                      </div>
+                      <h2>235</h2>
+                      <p>Tickets</p>
+                    </div>
+                     -->
+    </div>
+    <div class="box_row clearfix">
+      <div class="widget-tasks-statistics">
+        <div class="userstats clearfix" style="margin-top: 25px;">
+          <a href="javascript:void(0)" data-toggle="modal" data-target="#example_modal2">
+            <div class="white">
+              <i style="color:#98AEEA" class="icon-thumbs-up"></i>
+              <p style="color:#98AEEA"><%=@last_achievements.count%></p>
+            </div>
+            <div class="widget">
+              <input class="knob" data-width="120" data-height="120" data-displayInput=false data-readOnly=true data-thickness=".15" value="<%= 100 %>">
+            </div>
+            <p><strong><%= @last_achievements.count%></strong>Logros</p>
+          </a>
+        </div>
+      </div>
+      <!--<div class="widget-tasks-statistics">-->
+      <!--<div class="userstats clearfix" style="margin-top: 25px;">-->
+      <!--<a href="javascript:void(0)" data-toggle="modal" data-target="#example_modal2">-->
+      <!--<div class="white">-->
+      <!--<i style="color:#EA98AB" class="icon-credit-card"></i>-->
+      <!--<p style="color:#EA98AB">+35%</p>-->
+      <!--</div>-->
+      <!--<div class="widget">-->
+      <!--<input class="knob" data-width="120" data-height="120" data-displayInput=false data-readOnly=true data-thickness=".15" value="35">-->
+      <!--</div>-->
+      <!--<p><strong>152</strong>New Likes</p>-->
+      <!--</a>-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--<div class="widget-tasks-statistics">-->
+      <!--<div class="userstats clearfix" style="margin-top: 25px;">-->
+      <!--<a href="javascript:void(0)" data-toggle="modal" data-target="#example_modal2">-->
+      <!--<div class="white">-->
+      <!--<i style="color:#F6BF99" class="icon-phone"></i>-->
+      <!--<p style="color:#F6BF99">+97%</p>-->
+      <!--</div>-->
+      <!--<div class="widget">-->
+      <!--<input class="knob" data-width="120" data-height="120" data-displayInput=false data-readOnly=true data-thickness=".15" value="97">-->
+      <!--</div>-->
+      <!--<p><strong>592</strong>Leads Generated</p>-->
+      <!--</a>-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--
+                    <div>
+                      <div class="circle">
+                        <i style="color:#98AEEA" class="icon-thumbs-up"></i>
+                      </div>
+                      <h2>152</h2>
+                      <p>New Likes</p>
+                    </div>
+                    <div>
+                      <div class="circle">
+                        <i style="color:#EA98AB" class="icon-credit-card"></i>
+                      </div>
+                      <h2>$14,230</h2>
+                      <p>Income</p>
+                    </div>
+                    <div>
+                      <div class="circle">
+                        <i style="color:#F6BF99" class="icon-phone"></i>
+                      </div>
+                      <h2>92</h2>
+                      <p>Leads Generated</p>
+                    </div>
+                     -->
+    </div>
+  </div>
+</div>
+
+
+<!-- CHARTS  -->
+
+<div class="row-fluid" style="margin-top: 10px;">
+
+  <div class="widget widget-padding span12">
+    <div class="widget-header">
+      <i class="icon-bar-chart"></i>
+      <h5>Amigos jugando a <%= @game.name%></h5>
+      <div class="widget-buttons">
+        <a href="javascript:void(0)" class="collapse" data-collapsed="false"><i data-title="Collapse" class="icon-chevron-up"></i></a>
+      </div>
+    </div>
+    <div class="widget-body clearfix" style="height: 170px;" id="widget-tasks">
+      <div class="widget-tasks-statistics">
+        <% @gamers.each do |gamer| %>
+
+            <div class="userstats clearfix">
+              <a href="javascript:void(0)" data-toggle="modal" data-target="#task_modal_<%= gamer.id%>">
+                <%if gamer.image.nil?%>
+                    <img src="/assets/flip.png" class="image" style="margin-left: 3px;">
+                <% else %>
+                    <img src="<%= gamer.image%>" class="image" style="margin-left: 13px;">
+                <% end%>
+                <div class="widget">
+                  <input class="knob" data-width="75" data-height="75" data-displayInput=false data-readOnly=true data-thickness=".3" value="60">
+                </div>
+
+                <%if gamer.name.nil?%>
+                    <p>Sin nombre</p>
+                <% else %>
+                    <p><%= gamer.name%></p>
+                <% end%>
+              </a>
+            </div>
+
+        <% end%>
+
+
+      </div>
+    </div>
+  </div>
+</div><!-- /row-fluid -->
+
+
+
+<div class="row-fluid">
+
+  <div class="widget span12">
+    <div class="widget-header">
+      <i class="icon-comment-alt"></i>
+      <h5>Tus logros</h5>
+      <div class="widget-buttons">
+        <a href="javascript:void(0)" class="collapse" data-collapsed="false"><i data-title="Collapse" class="icon-chevron-up"></i></a>
+      </div>
+    </div>
+    <div class="widget-body" style="height:310px;overflow:hidden">
+      <div class="widget-comments clearfix slimscroll">
+        <ul>
+          <% if @user_achievements.count == 0%>
+              <div> Ningún amigo ha obtenido logros en este juego aún.</div>
+          <% else %>
+              <% @user_achievements.each do |achievement| %>
+                  <% if achievement.users.last.nil?%>
+                      <li>
+                        <img src="<%= achievement.image_url(:thumb)%>" class="avatar" style="margin-top: 0px;"/>
+                        <div class="comment-bubble">
+                          <h4><%= achievement.name%>  - <strong>Ningún usuario lo ha logrado aún</strong></h4>
+                          <%= achievement.description%>
+                        </div>
+                      </li>
+
+                  <% else %>
+                      <li>
+                        <img src="<%= achievement.users.last.image%>" class="avatar" style="margin-top: 0px;"/>
+                        <div class="comment-bubble">
+                          <h4><%= achievement.name%> - <strong><%= achievement.users.last.name%></strong></h4>
+                          <%= achievement.description%>
+                        </div>
+                      </li>
+                  <% end %>
+              <% end %>
+          <% end %>
+        </ul>
+      </div>
+    </div><!--/widget-body-->
+  </div> <!-- /widget span5 -->
+</div> <!-- /row-fluid -->
+<div class="row-fluid">
+
+  <div class="widget span12">
+    <div class="widget-header">
+      <i class="icon-comment-alt"></i>
+      <h5>Logros recientes</h5>
+      <div class="widget-buttons">
+        <a href="javascript:void(0)" class="collapse" data-collapsed="false"><i data-title="Collapse" class="icon-chevron-up"></i></a>
+      </div>
+    </div>
+    <div class="widget-body" style="height:310px;overflow:hidden">
+      <div class="widget-comments clearfix slimscroll">
+        <ul>
+          <% if @last_achievements.count == 0%>
+              <div> Ningún amigo ha obtenido logros en este juego aún.</div>
+          <% else %>
+              <% @last_achievements.each do |achievement| %>
+                  <% if achievement.users.last.nil?%>
+                      <li>
+                        <img src="<%= achievement.image_url(:thumb)%>" class="avatar" style="margin-top: 0px;"/>
+                        <div class="comment-bubble">
+                          <h4><%= achievement.name%>  - <strong>Ningún usuario lo ha logrado aún</strong></h4>
+                          <%= achievement.description%>
+                        </div>
+                      </li>
+
+                  <% else %>
+                      <li>
+                        <img src="<%= achievement.users.last.image%>" class="avatar" style="margin-top: 0px;"/>
+                        <div class="comment-bubble">
+                          <h4><%= achievement.name%> - <strong><%= achievement.users.last.name%></strong></h4>
+                          <%= achievement.description%>
+                        </div>
+                      </li>
+                  <% end %>
+              <% end %>
+          <% end %>
+        </ul>
+      </div>
+    </div><!--/widget-body-->
+  </div> <!-- /widget span5 -->
+</div> <!-- /row-fluid -->
+
+
+</div>
+<!-- /Main window -->
+
+</div><!--/.fluid-container-->
+</div><!-- wrap ends-->
+
+
+<!-- example modal -->
+<div id="example_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Support Ticket</h3>
+  </div>
+  <div class="modal-body">
+    <p>Here you can view and manage this support ticket.</p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <button class="btn btn-primary">Save changes</button>
+  </div>
+</div>
+
+<!-- example modal -->
+
+<% @gamers.each do |gamer| %>
+
+    <div id="task_modal_<%= gamer.id%>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">Información del jugador</h3>
+      </div>
+      <div class="modal-body">
+        <div class="clearfix">
+          <img src="<%= gamer.image%>" class="img-circle" style="float: left; width: 65px; margin-right: 20px;">
+          <h3 style="margin:0"><%= gamer.name%></h3>
+          <%if gamer.achievements.count == 0 or gamer.achievements.nil?%>
+              <p class="muted">No posee logros actualmente</p>
+          <%elsif gamer.achievements.count == 1%>
+              <p class="muted">Posee <%= gamer.achievements.count%> solo logro</p>
+
+          <%else%>
+              <p class="muted">Posee <%= gamer.achievements.count%> logros en total</p>
+          <%end%>
+
+        </div>
+        <hr>
+        <% unless gamer.achievements.last.nil?%>
+            <h5>Último logro</h5>
+            <p><%= gamer.achievements.last.name%></p>
+            <h5>puntos&nbsp;&nbsp;<small><%= gamer.achievements.last.points%></small></h5>
+        <%end%>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+      </div>
+    </div>
+
+<% end%>
+
+
+
+
