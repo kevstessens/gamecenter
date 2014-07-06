@@ -30,7 +30,7 @@ class UsersController < ApplicationController
     friends = graph.get_connections("me", "friends")
     @friends_count = 0
     friends.each do |friend|
-      unless (User.find_by uid: friend[:id]).nil?
+      unless (User.find_by uid: friend["id"]).nil?
         @friends_count = @friends_count + 1
       end
     end

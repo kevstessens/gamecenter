@@ -1,4 +1,10 @@
 class RestController < ActionController::Base
+require 'net/http'
+require "uri"
+require "json"
+require 'base64'
+require 'digest'
+
 
   def persist_achievement
     game = Game.find_by game_key: params['game_id']
@@ -18,23 +24,28 @@ class RestController < ActionController::Base
 
         if signature == createsig(path_to_encode)
           if user.nil?
+            uri = URI.parse("http://graph.facebook.com/"+params['user_id'])
+            response = Net::HTTP.get_response(uri)
+            data = JSON.parse(response.body)
             user = User.new
             user.uid = params['user_id'].to_i
+            user.name = data["name"]
+            user.image = "http://graph.facebook.com/"+params['user_id']+"/picture"
             user.provider = "facebook"
             user.save!
           end
-          if !(user.achievements.include? achievement)
+          unless user.achievements.include? achievement
             user.achievements << achievement
-            if !(user.games.include? achievement.game)
+            unless user.games.include? achievement.game
               user.games << achievement.game
             end
             user.save!
-            msg = { :status => "10", :message => "Success!", :html => "<b>Success!</b>" }
-            format.json  { render :json => msg }
+            msg = {:status => "10", :message => "Success!", :html => "<b>Success!</b>"}
+            format.json { render :json => msg }
           else
-            msg = { :status => "30", :message => "Already added achievement!", :html => "<b>Already added achievement!</b>" }
-            format.json  { render :json => msg }
-            format.html { redirect_to user_path(user)}
+            msg = {:status => "30", :message => "Already added achievement!", :html => "<b>Already added achievement!</b>"}
+            format.json { render :json => msg }
+            format.html { redirect_to user_path(user) }
           end
         else
           msg = { :status => "20", :message => "Incorrect signature!", :html => "<b>Incorrect signature!</b>" }

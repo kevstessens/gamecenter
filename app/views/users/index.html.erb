@@ -14,18 +14,6 @@
 <%end%>
 
 
-<%unless alert.nil?%>
-
-    <div class="control-group">
-      <div class="controls">
-        <div class="alert alert-error">
-          <button type="button" class="close" data-dismiss="alert">×</button>
-          <strong>Error!</strong> <%= alert%>
-        </div>
-      </div>
-    </div>
-<%end%>
-
 
 <div class="row-fluid">
   <div class="overview_boxes">
@@ -67,8 +55,13 @@
               <p style="color:#AEEA98"><%= current_user.points%></p>
             </div>
             <div class="widget">
-              <input class="knob" data-width="120" data-height="120" data-displayInput=false data-readOnly=true data-thickness=".15" value="<%= (current_user.points * 100) / (2000*@games.count) %>">
-            </div>
+              <% if @games.count == 0%>
+
+                  <input class="knob" data-width="120" data-height="120" data-displayInput=false data-readOnly=true data-thickness=".15" value="0">
+          <% else%>
+                  <input class="knob" data-width="120" data-height="120" data-displayInput=false data-readOnly=true data-thickness=".15" value="<%= (current_user.points * 100) / (2000*@games.count) %>">
+                  <% end %>
+                  </div>
             <p><strong><%=current_user.points%></strong>Puntos obtenidos</p>
           </a>
         </div>
@@ -185,7 +178,7 @@
         <% @games.each do |game| %>
 
             <div class="userstats clearfix">
-              <a href="javascript:void(0)" data-toggle="modal" data-target="#task_modal_<%= game.id%>">
+              <a href="<%= game_path(game)%>">
                 <%if game.image.nil?%>
                     <img src="/assets/flip.png" class="image" style="margin-left: 3px;">
                 <% else %>
