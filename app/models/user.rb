@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
 
   def game_points(game)
     points = 0
-    self.achievements..where(:game=> game).each do |ach|
+    self.achievements.where(:game=> game).each do |ach|
       points = points+ ach.points
     end
     return points

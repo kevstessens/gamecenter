@@ -15,6 +15,10 @@ Rails.application.routes.draw do
   match 'app/:game_id/user/:user_id/achievement/:achievement_id/:signature', to: 'rest#persist_achievement', via: [:get, :post]
   match 'app/:game_id/user/:user_id/achievements/:signature', to: 'rest#user_achievements', via: [:get, :post]
 
+  match 'app/:game_id/user/:user_id/:signature', to: 'public_views#index', via: [:get, :post]
+  match 'app/error', to: 'public_views#error', via: [:get, :post]
+
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

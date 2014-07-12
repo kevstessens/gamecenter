@@ -176,11 +176,14 @@
       <i class="icon-bar-chart"></i>
       <h5>Usuarios con más logros en tu juego</h5>
       <div class="widget-buttons">
-        <a href="javascript:void(0)" class="collapse" data-collapsed="false"><i data-title="Collapse" class="icon-chevron-up"></i></a>
+        <a href="javascript:void(0)" class="collapse" data-collapsed="false"><i data-title="Minimizar" class="icon-chevron-up"></i></a>
       </div>
     </div>
     <div class="widget-body clearfix" style="height: 170px;" id="widget-tasks">
       <div class="widget-tasks-statistics">
+        <%if @gamers.count == 0%>
+            <div style="float: center; margin-left: 30%; margin-right: 30%; margin-top: 110px;"> No hay usuarios jugando aún.</div>
+        <% else %>
         <% @gamers.each do |gamer| %>
 
       <div class="userstats clearfix">
@@ -202,7 +205,8 @@
           </a>
         </div>
 
-      <% end%>
+            <% end%>
+        <% end%>
 
 
       </div>
@@ -219,14 +223,14 @@
       <i class="icon-comment-alt"></i>
       <h5>Logros recientes</h5>
       <div class="widget-buttons">
-        <a href="javascript:void(0)" class="collapse" data-collapsed="false"><i data-title="Collapse" class="icon-chevron-up"></i></a>
+        <a href="javascript:void(0)" class="collapse" data-collapsed="false"><i data-title="Minimizar" class="icon-chevron-up"></i></a>
       </div>
     </div>
     <div class="widget-body" style="height:310px;overflow:hidden">
       <div class="widget-comments clearfix slimscroll">
         <ul>
           <% if @last_achievements.count == 0%>
-          <div> Ningún usuario ha obtenido logros en tu juego aún.</div>
+              <div style="float: center; margin-left: 43%; margin-right: 30%; margin-top: 145px;">  No has creado logros aún.</div>
               <% else %>
           <% @last_achievements.each do |achievement| %>
               <% if achievement.users.last.nil?%>

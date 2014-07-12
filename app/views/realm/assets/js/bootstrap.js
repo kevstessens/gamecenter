@@ -1521,7 +1521,7 @@
  /* COLLAPSE PUBLIC CLASS DEFINITION
   * ================================ */
 
-  var Collapse = function (element, options) {
+  var Minimizar = function (element, options) {
     this.$element = $(element)
     this.options = $.extend({}, $.fn.collapse.defaults, options)
 
@@ -1532,9 +1532,9 @@
     this.options.toggle && this.toggle()
   }
 
-  Collapse.prototype = {
+  Minimizar.prototype = {
 
-    constructor: Collapse
+    constructor: Minimizar
 
   , dimension: function () {
       var hasWidth = this.$element.hasClass('width')
@@ -1625,7 +1625,7 @@
       var $this = $(this)
         , data = $this.data('collapse')
         , options = typeof option == 'object' && option
-      if (!data) $this.data('collapse', (data = new Collapse(this, options)))
+      if (!data) $this.data('collapse', (data = new Minimizar(this, options)))
       if (typeof option == 'string') data[option]()
     })
   }
@@ -1634,7 +1634,7 @@
     toggle: true
   }
 
-  $.fn.collapse.Constructor = Collapse
+  $.fn.collapse.Constructor = Minimizar
 
 
  /* COLLAPSE NO CONFLICT

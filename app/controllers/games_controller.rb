@@ -7,6 +7,8 @@ class GamesController < ApplicationController
     !current_user.nil?
   end
 
+  UserAchievement = Struct.new(:user, :achievement)
+
   def check_permissions
     #unless current_user.nil? and current_game_owner.nil?
     #  unless current_user.nil? and !current_game_owner.nil?
@@ -45,7 +47,10 @@ class GamesController < ApplicationController
       @gamers.each do |gamer|
         gamer.achievements.each do |ach|
           if ach.game_id == @game.id
-            @user_achievements << ach
+            user_achievement_new = UserAchievement.new
+            user_achievement_new.user = gamer
+            user_achievement_new.achievement = ach
+            @user_achievements << user_achievement_new
           end
         end
       end

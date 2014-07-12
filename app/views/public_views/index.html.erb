@@ -1,0 +1,102 @@
+<div id="wrap">
+
+<div class="container-fluid">
+
+<!-- Main window -->
+  <div id="dashboard_page">
+
+
+  <div class="row-fluid">
+  <div class="overview_boxes">
+    <div class="box_row clearfix">
+      <div class="widget-tasks-statistics">
+        <div class="userstats clearfix" style="margin-top: 25px;">
+          <a href="javascript:void(0)" data-toggle="modal" data-target="#example_modal2">
+            <div class="white">
+              <i style="color:#98E5EA" class="icon-user"></i>
+              <p style="color:#98E5EA"><%=@position.to_s + " / " + @gamers.count.to_s%></p>
+            </div>
+            <div class="widget">
+              <input class="knob" data-width="120" data-height="120" data-displayInput=false data-readOnly=true data-thickness=".15" value="<%= (@position *100) / @gamers.count %>">
+            </div>
+            <p><strong><%= @gamers.count%></strong>Personas jugando</p>
+
+          </a>
+        </div>
+      </div>
+      <div class="widget-tasks-statistics">
+        <div class="userstats clearfix" style="margin-top: 25px;">
+          <a href="javascript:void(0)" data-toggle="modal" data-target="#example_modal2">
+            <div class="white">
+              <i style="color:#AEEA98" class="icon-dashboard"></i>
+              <p style="color:#AEEA98"><%= 2000 - (@game_points.to_i)%></p>
+            </div>
+            <div class="widget">
+              <input class="knob" data-width="120" data-height="120" data-displayInput=false data-readOnly=true data-thickness=".15" value="<%= (((2000-@game_points.to_i)*100)/2000).to_i %>">
+            </div>
+            <p><strong><%=@game_points%></strong>Puntos</p>
+          </a>
+        </div>
+      </div>
+      <div class="widget-tasks-statistics">
+        <div class="userstats clearfix" style="margin-top: 25px;">
+          <a href="javascript:void(0)" data-toggle="modal" data-target="#example_modal2">
+            <div class="white">
+              <i style="color:#98AEEA" class="icon-thumbs-up"></i>
+              <p style="color:#98AEEA"><%=@last_achievements.count%></p>
+            </div>
+            <div class="widget">
+              <input class="knob" data-width="120" data-height="120" data-displayInput=false data-readOnly=true data-thickness=".15" value="<%= 100 %>">
+            </div>
+            <% if @last_achievements.count == 1%>
+            <p><strong><%= @last_achievements.count%></strong>Logro</p>
+                <% else%>
+            <p><strong><%= @last_achievements.count%></strong>Logros</p>
+                <% end %>
+          </a>
+        </div>
+      </div>
+
+  </div>
+</div>
+</div>
+
+
+
+  <!-- CHARTS  -->
+
+<div class="row-fluid">
+
+  <div class="widget span12">
+    <div class="widget-header">
+      <i class="icon-comment-alt"></i>
+      <h5>Tu Logros recientes</h5>
+    </div>
+    <div class="widget-body" style="height:310px;overflow:hidden">
+      <div class="widget-comments clearfix slimscroll">
+        <ul>
+          <% if @last_achievements.count == 0%>
+              <div> Ningún logro en este juego aún.</div>
+          <% else %>
+              <% @last_achievements.last(10).each do |achievement| %>
+                      <li>
+                        <img src="<%= achievement.image_url(:thumb)%>" class="avatar" style="margin-top: 0px;"/>
+                        <div class="comment-bubble">
+                          <h4><%= achievement.name%> - <strong><%= achievement.points.to_s + " Puntos"%></strong></h4>
+                          <%= achievement.description%>
+                        </div>
+                      </li>
+                  <% end %>
+              <% end %>
+        </ul>
+      </div>
+    </div><!--/widget-body-->
+  </div> <!-- /widget span5 -->
+</div> <!-- /row-fluid -->
+
+  </div>
+
+<!-- /Main window -->
+
+</div><!--/.fluid-container-->
+</div><!-- wrap ends-->

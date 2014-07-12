@@ -176,11 +176,14 @@
       <i class="icon-bar-chart"></i>
       <h5>Amigos jugando a <%= @game.name%></h5>
       <div class="widget-buttons">
-        <a href="javascript:void(0)" class="collapse" data-collapsed="false"><i data-title="Collapse" class="icon-chevron-up"></i></a>
+        <a href="javascript:void(0)" class="collapse" data-collapsed="false"><i data-title="Minimizar" class="icon-chevron-up"></i></a>
       </div>
     </div>
     <div class="widget-body clearfix" style="height: 170px;" id="widget-tasks">
       <div class="widget-tasks-statistics">
+        <%if @gamers.count == 0%>
+            <div style="float: center; margin-left: 30%; margin-right: 30%; margin-top: 110px;"> No hay amigos jugando aún.</div>
+            <% else %>
         <% @gamers.each do |gamer| %>
 
             <div class="userstats clearfix">
@@ -202,6 +205,7 @@
               </a>
             </div>
 
+            <% end%>
         <% end%>
 
 
@@ -219,34 +223,24 @@
       <i class="icon-comment-alt"></i>
       <h5>Logros de tus amigos</h5>
       <div class="widget-buttons">
-        <a href="javascript:void(0)" class="collapse" data-collapsed="false"><i data-title="Collapse" class="icon-chevron-up"></i></a>
+        <a href="javascript:void(0)" class="collapse" data-collapsed="false"><i data-title="Minimizar" class="icon-chevron-up"></i></a>
       </div>
     </div>
     <div class="widget-body" style="height:310px;overflow:hidden">
       <div class="widget-comments clearfix slimscroll">
         <ul>
           <% if @user_achievements.count == 0%>
-              <div> Ningún amigo ha obtenido logros en este juego aún.</div>
+              <div style="float: center; margin-left: 36%; margin-right: 30%; margin-top: 145px;"> Ningún amigo ha obtenido logros en este juego aún.</div>
           <% else %>
               <% @user_achievements.last(10).each do |achievement| %>
-                  <% if achievement.users.last.nil?%>
-                      <li>
-                        <img src="<%= achievement.image_url(:thumb)%>" class="avatar" style="margin-top: 0px;"/>
-                        <div class="comment-bubble">
-                          <h4><%= achievement.name%>  - <strong>Ningún usuario lo ha logrado aún</strong></h4>
-                          <%= achievement.description%>
-                        </div>
-                      </li>
 
-                  <% else %>
                       <li>
-                        <img src="<%= achievement.users.last.image%>" class="avatar" style="margin-top: 0px;"/>
+                        <img src="<%= achievement.user.image%>" class="avatar" style="margin-top: 0px;"/>
                         <div class="comment-bubble">
-                          <h4><%= achievement.name%> - <strong><%= achievement.users.last.name%></strong></h4>
-                          <%= achievement.description%>
+                          <h4><%= achievement.achievement.name%> - <strong><%= achievement.user.name%></strong></h4>
+                          <%= achievement.achievement.description%>
                         </div>
                       </li>
-                  <% end %>
               <% end %>
           <% end %>
         </ul>
@@ -259,36 +253,26 @@
   <div class="widget span12">
     <div class="widget-header">
       <i class="icon-comment-alt"></i>
-      <h5>Tu Logros recientes</h5>
+      <h5>Tus Logros recientes</h5>
       <div class="widget-buttons">
-        <a href="javascript:void(0)" class="collapse" data-collapsed="false"><i data-title="Collapse" class="icon-chevron-up"></i></a>
+        <a href="javascript:void(0)" class="collapse" data-collapsed="false"><i data-title="Minimizar" class="icon-chevron-up"></i></a>
       </div>
     </div>
     <div class="widget-body" style="height:310px;overflow:hidden">
       <div class="widget-comments clearfix slimscroll">
         <ul>
           <% if @last_achievements.count == 0%>
-              <div> Ningún amigo ha obtenido logros en este juego aún.</div>
+              <div style="float: center; margin-left: 36%; margin-right: 30%; margin-top: 145px;">  Ningún logro en este juego aún.</div>
           <% else %>
               <% @last_achievements.last(10).each do |achievement| %>
-                  <% if achievement.users.last.nil?%>
+
                       <li>
                         <img src="<%= achievement.image_url(:thumb)%>" class="avatar" style="margin-top: 0px;"/>
                         <div class="comment-bubble">
-                          <h4><%= achievement.name%>  - <strong>Ningún usuario lo ha logrado aún</strong></h4>
+                          <h4><%= achievement.name%> - <strong><%= achievement.points.to_s + " Puntos"%></strong></h4>
                           <%= achievement.description%>
                         </div>
                       </li>
-
-                  <% else %>
-                      <li>
-                        <img src="<%= achievement.users.last.image%>" class="avatar" style="margin-top: 0px;"/>
-                        <div class="comment-bubble">
-                          <h4><%= achievement.name%> - <strong><%= achievement.users.last.name%></strong></h4>
-                          <%= achievement.description%>
-                        </div>
-                      </li>
-                  <% end %>
               <% end %>
           <% end %>
         </ul>
@@ -333,21 +317,21 @@
         <div class="clearfix">
           <img src="<%= gamer.image%>" class="img-circle" style="float: left; width: 65px; margin-right: 20px;">
           <h3 style="margin:0"><%= gamer.name%></h3>
-          <%if gamer.achievements.count == 0 or gamer.achievements.nil?%>
+          <%if gamer.achievements.where(:game=>@game).count == 0 or gamer.achievements.where(:game=>@game).nil?%>
               <p class="muted">No posee logros actualmente</p>
           <%elsif gamer.achievements.count == 1%>
-              <p class="muted">Posee <%= gamer.achievements.count%> solo logro</p>
+              <p class="muted">Posee <%= gamer.achievements.where(:game=>@game).count%> solo logro</p>
 
           <%else%>
-              <p class="muted">Posee <%= gamer.achievements.count%> logros en total</p>
+              <p class="muted">Posee <%= gamer.achievements.where(:game=>@game).count%> logros en total</p>
           <%end%>
 
         </div>
         <hr>
-        <% unless gamer.achievements.last.nil?%>
+        <% unless gamer.achievements.where(:game=>@game).last.nil?%>
             <h5>Último logro</h5>
-            <p><%= gamer.achievements.last.name%></p>
-            <h5>puntos&nbsp;&nbsp;<small><%= gamer.achievements.last.points%></small></h5>
+            <p><%= gamer.achievements.where(:game=>@game).last.name%></p>
+            <h5>puntos&nbsp;&nbsp;<small><%= gamer.achievements.where(:game=>@game).last.points%></small></h5>
         <%end%>
       </div>
       <div class="modal-footer">
