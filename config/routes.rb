@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   match 'app/:game_id/user/:user_id/achievements/:signature', to: 'rest#user_achievements', via: [:get, :post]
 
   match 'app/:game_id/user/:user_id/:signature', to: 'public_views#index', via: [:get, :post]
+  match 'app/:game_id/user/:user_id/friends/:friends/:signature', to: 'public_views#index_friends', via: [:get, :post]
   match 'app/error', to: 'public_views#error', via: [:get, :post]
 
 

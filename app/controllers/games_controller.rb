@@ -30,11 +30,13 @@ class GamesController < ApplicationController
     friends = graph.get_connections("me", "friends")
     @friends_count = 0
     @gamers = []
+    @ranking = []
     friends.each do |friend|
       unless (User.find_by uid: friend["id"]).nil?
         friend = User.find_by uid: friend["id"]
         if friend.games.include? @game
           @gamers << friend
+          @ranking << friend
         end
         @friends_count = @friends_count + 1
       end
@@ -54,6 +56,13 @@ class GamesController < ApplicationController
           end
         end
       end
+
+      @ranking << current_user
+      @ranking = @ranking.sort_by! {|u| u.game_points(@game)}
+      @ranking = @ranking.reverse
+
+      @gamers = @gamers.sort_by! {|u| u.game_points(@game)}
+      @gamers = @gamers.reverse
     end
 
     @game_points = 0

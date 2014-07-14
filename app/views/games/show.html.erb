@@ -175,9 +175,7 @@
     <div class="widget-header">
       <i class="icon-bar-chart"></i>
       <h5>Amigos jugando a <%= @game.name%></h5>
-      <div class="widget-buttons">
-        <a href="javascript:void(0)" class="collapse" data-collapsed="false"><i data-title="Minimizar" class="icon-chevron-up"></i></a>
-      </div>
+
     </div>
     <div class="widget-body clearfix" style="height: 170px;" id="widget-tasks">
       <div class="widget-tasks-statistics">
@@ -194,7 +192,7 @@
                     <img src="<%= gamer.image%>" class="image" style="">
                 <% end%>
                 <div class="widget">
-                  <input class="knob" data-width="75" data-height="75" data-displayInput=false data-readOnly=true data-thickness=".3" value="60">
+                  <input class="knob" data-width="75" data-height="75" data-displayInput=false data-readOnly=true data-thickness=".3" value="<%=(gamer.achievements.where(:game => @game ).count * 100) / @game.achievements.count%>">
                 </div>
 
                 <%if gamer.name.nil?%>
@@ -215,6 +213,44 @@
 </div><!-- /row-fluid -->
 
 
+
+
+
+<div class="row-fluid">
+
+  <div class="widget span12">
+    <div class="widget-header">
+      <i class="icon-trophy"></i>
+      <h5>Ranking de tus amigos</h5>
+      <div class="widget-buttons">
+        <a href="javascript:void(0)" class="collapse" data-collapsed="false"><i data-title="Minimizar" class="icon-chevron-up"></i></a>
+      </div>
+    </div>
+    <div class="widget-body" style="height:310px;overflow:hidden">
+      <div class="widget-comments clearfix slimscroll">
+        <ul>
+          <% if @ranking.count == 0%>
+              <div style="float: center; margin-left: 36%; margin-right: 30%; margin-top: 145px;"> Ningún amigo ha obtenido logros en este juego aún.</div>
+          <% else %>
+              <% @ranking.each do |gamer| %>
+
+                  <li>
+                    <img src="<%= gamer.image%>" class="avatar" style="margin-top: 0px;"/>
+                    <% if gamer.id == current_user.id%>
+                        <div class="comment-bubble" style="background-color: #FCBB60;">
+                    <% else%>
+                        <div class="comment-bubble">
+                    <% end %>                      <h4><%= gamer.name%> - <strong><%= gamer.game_points(@game)%></strong></h4>
+                      <%= "Posee " + gamer.achievements.count.to_s + " logros en Kamecenter, " + gamer.achievements.where(:game => @game).count.to_s + " en este juego"%>
+                    </div>
+                  </li>
+              <% end %>
+          <% end %>
+        </ul>
+      </div>
+    </div><!--/widget-body-->
+  </div> <!-- /widget span5 -->
+</div> <!-- /row-fluid -->
 
 <div class="row-fluid">
 
@@ -238,7 +274,7 @@
                         <img src="<%= achievement.user.image%>" class="avatar" style="margin-top: 0px;"/>
                         <div class="comment-bubble">
                           <h4><%= achievement.achievement.name%> - <strong><%= achievement.user.name%></strong></h4>
-                          <%= achievement.achievement.description%>
+                          <%= achievement.achievement.points.to_s + " Puntos"%>
                         </div>
                       </li>
               <% end %>
