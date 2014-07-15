@@ -103,23 +103,6 @@ if($('#dashboard_page').length > 0 ){
     height: '170px'
   });
   $('.slimscroll').slimScroll({height:'310px'});
-  // Welcome notification
-
-//  $.gritter.add({
-//    // (string | mandatory) the heading of the notification
-//    title: 'Bienvenido al panel de administración de tu juego',
-//    // (string | mandatory) the text inside the notification
-//    text: 'Esperamos que puedas disfrutarlo',
-//    // (string | optional) the image to display on the left
-//    image: 'http://graph.facebook.com/1280412546/picture?type=square',
-//    // (bool | optional) if you want it to fade out on its own or just sit there
-//    sticky: true,
-//    // (int | optional) the time you want it to be alive for before fading out
-//    time: '',
-//    // (string | optional) the class name you want to apply to that specific message
-//    class_name: 'my-sticky-class'
-//  });
-
 
   // sparkline plugin
   $('.inlinesparkline').sparkline('html', {
