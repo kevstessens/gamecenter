@@ -20,8 +20,11 @@ class PublicViewsController < ApplicationController
           User.all.each do |friend|
             if friend.games.include? @game
               @gamers << friend
-              if (!friend.nil?) and friend.game_points(game) > user.game_points(game)
+              unless friend.nil?
+                if friend.game_points(game) > user.game_points(game)
                 @position = @position + 1
+                end
+
               end
             end
           end
@@ -57,10 +60,12 @@ class PublicViewsController < ApplicationController
         @position = 1
         @gamers = []
         User.all.each do |friend|
-          if (!friend.nil?) and (friend.games.include? @game) and (friends.include? friend.uid)
-            @gamers << friend
-            if friend.game_points(game) > user.game_points(game)
-              @position = @position + 1
+          unless friend.nil?
+            if(friend.games.include? @game) and (friends.include? friend.uid)
+              @gamers << friend
+              if friend.game_points(game) > user.game_points(game)
+                @position = @position + 1
+              end
             end
           end
         end
