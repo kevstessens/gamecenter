@@ -10,7 +10,7 @@ class PublicViewsController < ApplicationController
     else
       if user.nil?
         redirect_to app_no_gamer_path
-      end
+      else
       signature = request.fullpath.split("/").last
       path_to_encode = request.fullpath[0..(signature.length+1)*-1]+Date.current().strftime("%d-%m-%y")+"/"+game.secret_key+"/"
       if signature == createsig(path_to_encode)
@@ -37,6 +37,7 @@ class PublicViewsController < ApplicationController
         else
           redirect_to app_error_path
         end
+    end
       end
 
   end
@@ -52,7 +53,7 @@ class PublicViewsController < ApplicationController
       user = User.find_by uid: params['user_id']
       if user.nil?
         redirect_to app_no_gamer_path
-      end
+      else
       signature = request.fullpath.split("/").last
       path_to_encode = request.fullpath[0..(signature.length+1)*-1]+Date.current().strftime("%d-%m-%y")+"/"+game.secret_key+"/"
       if signature == createsig(path_to_encode)
@@ -79,6 +80,7 @@ class PublicViewsController < ApplicationController
         redirect_to app_error_path
       end
     end
+  end
 
   end
 

@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dfd5a6e9-9565-4b5e-bda8-1541c7c0eeab" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/development.sqlite3" afterPath="$PROJECT_DIR$/db/development.sqlite3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/log/development.log" afterPath="$PROJECT_DIR$/log/development.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/gamecenter.iml" afterPath="$PROJECT_DIR$/.idea/gamecenter.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/public_views/no_gamer.html.erb" afterPath="$PROJECT_DIR$/app/views/public_views/no_gamer.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/public_views_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/public_views_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="gamecenter.iws" />
@@ -19,7 +16,7 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/gamecenter@Unnamed.coverage" NAME="Unnamed Coverage Results" MODIFIED="1405390066835" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="gamecenter" />
+    <SUITE FILE_PATH="coverage/gamecenter@Unnamed.coverage" NAME="Unnamed Coverage Results" MODIFIED="1405530792732" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="gamecenter" />
     <SUITE FILE_PATH="coverage/gamecenter@IRB_console__gamecenter.coverage" NAME="IRB console: gamecenter Coverage Results" MODIFIED="1403128209723" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="gamecenter" />
     <SUITE FILE_PATH="coverage/gamecenter@routes__gamecenter.coverage" NAME="routes: gamecenter Coverage Results" MODIFIED="1405529197223" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="gamecenter" />
   </component>
@@ -62,15 +59,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="application.html.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="193" column="39" selection-start="9234" selection-end="9234" vertical-scroll-proportion="0.0" vertical-offset="3013" max-vertical-offset="3240">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="game_owners_controller.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/game_owners_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
@@ -80,10 +68,19 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="application_controller.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/application_controller.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="12" column="137" selection-start="343" selection-end="343" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="270">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="public_views_controller.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/public_views_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="65" column="99" selection-start="2178" selection-end="2178" vertical-scroll-proportion="0.93264246" vertical-offset="615" max-vertical-offset="1365">
+            <state line="48" column="23" selection-start="1470" selection-end="1470" vertical-scroll-proportion="0.442029" vertical-offset="598" max-vertical-offset="1470">
               <folding />
             </state>
           </provider>
@@ -101,7 +98,7 @@
       <file leaf-file-name="no_gamer.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/public_views/no_gamer.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="60" selection-start="488" selection-end="488" vertical-scroll-proportion="-10.625" vertical-offset="0" max-vertical-offset="375">
+            <state line="12" column="107" selection-start="387" selection-end="387" vertical-scroll-proportion="-7.5" vertical-offset="0" max-vertical-offset="375">
               <folding />
             </state>
           </provider>
@@ -110,16 +107,7 @@
       <file leaf-file-name="new.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/devise/sessions/new.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="2" selection-start="868" selection-end="1065" vertical-scroll-proportion="-0.0" vertical-offset="315" max-vertical-offset="1800">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="error.html.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/public_views/error.html.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="27" selection-start="0" selection-end="243" vertical-scroll-proportion="-9.375" vertical-offset="0" max-vertical-offset="315">
+            <state line="28" column="78" selection-start="1095" selection-end="1095" vertical-scroll-proportion="-4.375" vertical-offset="315" max-vertical-offset="1800">
               <folding />
             </state>
           </provider>
@@ -465,7 +453,7 @@
       <recent name="$PROJECT_DIR$/app/views" />
     </key>
   </component>
-  <component name="RunManager" selected="Rake.routes: gamecenter">
+  <component name="RunManager" selected="Rails.Unnamed">
     <configuration default="false" name="IRB console: gamecenter" type="IrbRunConfigurationType" factoryName="IRB console" temporary="true">
       <module name="gamecenter" />
       <IRB_RUN_CONFIG NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
@@ -743,10 +731,10 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32998565" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36728838" sideWeight="0.5009597" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25394547" sideWeight="0.49751243" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.49615976" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.49614793" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.40243903" sideWeight="0.50248754" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36808237" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3266564" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3266564" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32872504" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32819724" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -894,27 +882,22 @@
           <option name="timeStamp" value="85" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="ruby-line">
-          <url>file://$PROJECT_DIR$/app/controllers/public_views_controller.rb</url>
-          <line>14</line>
-          <option name="timeStamp" value="87" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="ruby-line">
-          <url>file://$PROJECT_DIR$/app/controllers/public_views_controller.rb</url>
-          <line>54</line>
-          <option name="timeStamp" value="89" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="ruby-line">
-          <url>file://$PROJECT_DIR$/app/controllers/application_controller.rb</url>
-          <line>6</line>
-          <option name="timeStamp" value="90" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="ruby-line">
           <url>file://$PROJECT_DIR$/app/controllers/sessions_controller.rb</url>
           <line>2</line>
           <option name="timeStamp" value="91" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="ruby-line">
+          <url>file://$PROJECT_DIR$/app/controllers/public_views_controller.rb</url>
+          <line>5</line>
+          <option name="timeStamp" value="95" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="ruby-line">
+          <url>file://$PROJECT_DIR$/app/controllers/public_views_controller.rb</url>
+          <line>11</line>
+          <option name="timeStamp" value="96" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="92" />
+      <option name="time" value="97" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -1152,13 +1135,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/application_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="0" selection-start="211" selection-end="211" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="270">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/realm.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="104" column="48" selection-start="3380" selection-end="3380" vertical-scroll-proportion="0.0" vertical-offset="11366" max-vertical-offset="15330">
@@ -1206,20 +1182,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/public_views/error.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="27" selection-start="0" selection-end="243" vertical-scroll-proportion="-9.375" vertical-offset="0" max-vertical-offset="315">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/devise/sessions/new.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="2" selection-start="868" selection-end="1065" vertical-scroll-proportion="-0.0" vertical-offset="315" max-vertical-offset="1800">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/routes.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="17" column="32" selection-start="651" selection-end="651" vertical-scroll-proportion="0.0" vertical-offset="87" max-vertical-offset="1335">
@@ -1227,16 +1189,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/application_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="137" selection-start="343" selection-end="343" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="270">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/public_views/no_gamer.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="60" selection-start="488" selection-end="488" vertical-scroll-proportion="-10.625" vertical-offset="0" max-vertical-offset="375">
+        <state line="12" column="107" selection-start="387" selection-end="387" vertical-scroll-proportion="-7.5" vertical-offset="0" max-vertical-offset="375">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/public_views/error.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="56" selection-start="74" selection-end="74" vertical-scroll-proportion="0.23809524" vertical-offset="0" max-vertical-offset="315">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/devise/sessions/new.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="78" selection-start="1095" selection-end="1095" vertical-scroll-proportion="-4.375" vertical-offset="315" max-vertical-offset="1800">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/public_views_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="65" column="99" selection-start="2178" selection-end="2178" vertical-scroll-proportion="0.93264246" vertical-offset="615" max-vertical-offset="1365">
+        <state line="48" column="23" selection-start="1470" selection-end="1470" vertical-scroll-proportion="0.442029" vertical-offset="598" max-vertical-offset="1470">
           <folding />
         </state>
       </provider>
