@@ -4,10 +4,13 @@ class PublicViewsController < ApplicationController
   # GET /public_views.json
   def index
     game = Game.find_by game_key: params['game_id']
+    user = User.find_by uid: params['user_id']
     if game.nil?
-        redirect_to app_error_path
+      redirect_to app_error_path
     else
-      user = User.find_by uid: params['user_id']
+      if user.nil?
+        redirect_to app_no_gamer_path
+      end
       signature = request.fullpath.split("/").last
       path_to_encode = request.fullpath[0..(signature.length+1)*-1]+Date.current().strftime("%d-%m-%y")+"/"+game.secret_key+"/"
       if signature == createsig(path_to_encode)
@@ -44,6 +47,9 @@ class PublicViewsController < ApplicationController
       redirect_to app_error_path
     else
       user = User.find_by uid: params['user_id']
+      if user.nil?
+        redirect_to app_no_gamer_path
+      end
       signature = request.fullpath.split("/").last
       path_to_encode = request.fullpath[0..(signature.length+1)*-1]+Date.current().strftime("%d-%m-%y")+"/"+game.secret_key+"/"
       if signature == createsig(path_to_encode)
