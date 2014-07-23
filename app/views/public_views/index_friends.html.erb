@@ -28,6 +28,22 @@
         <div class="userstats clearfix" style="margin-top: 25px;">
           <a href="javascript:void(0)" data-toggle="modal" data-target="#example_modal2">
             <div class="white">
+              <i style="color:#F6BF99" class="icon-trophy"></i>
+              <p style="color:#F6BF99"><%=@all_position.to_s + " / " + @all_gamers.count.to_s%></p>
+            </div>
+            <div class="widget">
+              <input class="knob" data-width="120" data-height="120" data-displayInput=false data-readOnly=true data-thickness=".15" value="<%= (@all_position *100) / @all_gamers.count %>">
+            </div>
+            <p><strong><%= @all_gamers.count%></strong>Usuarios jugando</p>
+
+          </a>
+        </div>
+      </div>
+
+      <div class="widget-tasks-statistics">
+        <div class="userstats clearfix" style="margin-top: 25px;">
+          <a href="javascript:void(0)" data-toggle="modal" data-target="#example_modal2">
+            <div class="white">
               <i style="color:#AEEA98" class="icon-dashboard"></i>
               <p style="color:#AEEA98"><%= 2000 - (@game_points.to_i)%></p>
             </div>
@@ -78,7 +94,7 @@
           <div class="widget-comments clearfix slimscroll">
             <ul>
               <% if @gamers.count == 0%>
-                  <div> Ningún usuario jugando en este juego aún.</div>
+                  <div> Ningún amigo jugando en este juego aún.</div>
               <% else %>
                   <% @gamers.each do |gamer| %>
                       <li>
@@ -90,6 +106,41 @@
                       <% end %>
                           <h4><%= gamer.name%> - <strong><%= gamer.game_points(@game).to_s + " Puntos"%></strong></h4>
                           <%= "Posee " + gamer.achievements.count.to_s + " logros en Kamecenter, " + gamer.achievements.where(:game => @game).count.to_s + " en este juego"%>
+                        </div>
+                      </li>
+
+
+                  <% end %>
+              <% end %>
+            </ul>
+          </div>
+        </div><!--/widget-body-->
+      </div> <!-- /widget span5 -->
+    </div> <!-- /row-fluid -->
+
+    <div class="row-fluid">
+
+      <div class="widget span12">
+        <div class="widget-header">
+          <i class="icon-trophy"></i>
+          <h5>Ranking global</h5>
+        </div>
+        <div class="widget-body" style="overflow:scroll; margin-bottom: 20px;">
+          <div class="widget-comments clearfix slimscroll">
+            <ul>
+              <% if @all_gamers.count == 0%>
+                  <div> Ningún usuario jugando en este juego aún.</div>
+              <% else %>
+                  <% @all_gamers.each do |gamer| %>
+                      <li>
+                        <img src="<%= gamer.image%>" class="avatar" style="margin-top: 0px;"/>
+                        <% if gamer.id == @user.id%>
+                            <div class="comment-bubble" style="background-color: #FCBB60;">
+                        <% else%>
+                            <div class="comment-bubble">
+                        <% end %>
+                        <h4><%= gamer.name%> - <strong><%= gamer.game_points(@game).to_s + " Puntos"%></strong></h4>
+                        <%= "Posee " + gamer.achievements.count.to_s + " logros en Kamecenter, " + gamer.achievements.where(:game => @game).count.to_s + " en este juego"%>
                         </div>
                       </li>
 

@@ -18,7 +18,7 @@ class PublicViewsController < ApplicationController
           @position = 1
           @gamers = []
           User.all.each do |friend|
-            if friend.games.include? @game
+            if friend.games.include? @game and (friend != user)
               @gamers << friend
               unless friend.nil?
                 if friend.game_points(game) > user.game_points(game)
@@ -59,6 +59,7 @@ class PublicViewsController < ApplicationController
       if signature == createsig(path_to_encode)
         @game = game
         @position = 1
+        @all_position = 1
         @gamers = []
         User.all.each do |friend|
           unless friend.nil?
@@ -73,6 +74,21 @@ class PublicViewsController < ApplicationController
         @gamers << user
         @gamers = @gamers.sort_by! {|u| u.game_points(game)}
         @gamers = @gamers.reverse
+        @all_gamers = []
+        User.all.each do |friend|
+          if friend.games.include? @game and (friend != user)
+            @all_gamers << friend
+            unless friend.nil?
+              if friend.game_points(game) > user.game_points(game)
+                @all_position = @all_position + 1
+              end
+
+            end
+          end
+        end
+        @all_gamers << user
+        @all_gamers = @all_gamers.sort_by! {|u| u.game_points(game)}
+        @all_gamers = @all_gamers.reverse
         @last_achievements = user.achievements.where(:game_id => @game.id).all
         @game_points = user.game_points(game)
         @user = user
