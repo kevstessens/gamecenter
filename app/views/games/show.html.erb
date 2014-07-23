@@ -187,7 +187,7 @@
             <div class="userstats clearfix">
               <a href="javascript:void(0)" data-toggle="modal" data-target="#task_modal_<%= gamer.id%>">
                 <%if gamer.image.nil?%>
-                    <img src="/assets/flip.png" class="image" style="margin-left: 3px;">
+                    <img src="/assets/flip.png" class="image">
                 <% else %>
                     <img src="<%= gamer.image%>" class="image" style="">
                 <% end%>
@@ -226,7 +226,7 @@
         <a href="javascript:void(0)" class="collapse" data-collapsed="false"><i data-title="Minimizar" class="icon-chevron-up"></i></a>
       </div>
     </div>
-    <div class="widget-body" style="height:310px;overflow:hidden">
+    <div class="widget-body" style="height:310px;overflow:scroll">
       <div class="widget-comments clearfix slimscroll">
         <ul>
           <% if @ranking.count == 0%>
@@ -262,7 +262,7 @@
         <a href="javascript:void(0)" class="collapse" data-collapsed="false"><i data-title="Minimizar" class="icon-chevron-up"></i></a>
       </div>
     </div>
-    <div class="widget-body" style="height:310px;overflow:hidden">
+    <div class="widget-body" style="height:310px;overflow:scroll">
       <div class="widget-comments clearfix slimscroll">
         <ul>
           <% if @user_achievements.count == 0%>
@@ -294,7 +294,7 @@
         <a href="javascript:void(0)" class="collapse" data-collapsed="false"><i data-title="Minimizar" class="icon-chevron-up"></i></a>
       </div>
     </div>
-    <div class="widget-body" style="height:310px;overflow:hidden">
+    <div class="widget-body" style="height:310px;overflow:scroll">
       <div class="widget-comments clearfix slimscroll">
         <ul>
           <% if @last_achievements.count == 0%>

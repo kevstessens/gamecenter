@@ -176,7 +176,7 @@
       <i class="icon-bar-chart"></i>
       <h5>Usuarios con más logros en tu juego</h5>
       <div class="widget-buttons">
-        <a href="javascript:void(0)" class="collapse" data-collapsed="false"><i data-title="Minimizar" class="icon-chevron-up"></i></a>
+        <a href="#" class="collapse" data-collapsed="false"><i data-title="Minimizar" class="icon-chevron-up"></i></a>
       </div>
     </div>
     <div class="widget-body clearfix" style="height: 170px;" id="widget-tasks">
@@ -189,9 +189,9 @@
       <div class="userstats clearfix">
           <a href="javascript:void(0)" data-toggle="modal" data-target="#task_modal_<%= gamer.id%>">
             <%if gamer.image.nil?%>
-                <img src="/assets/flip.png" class="image" style="margin-left: 3px;">
+                <img src="/assets/flip.png" class="image">
            <% else %>
-             <img src="<%= gamer.image%>" class="image" style="margin-left: 13px;">
+             <img src="<%= gamer.image%>" class="image">
             <% end%>
             <div class="widget">
               <input class="knob" data-width="75" data-height="75" data-displayInput=false data-readOnly=true data-thickness=".3" value="60">
@@ -226,7 +226,7 @@
         <a href="javascript:void(0)" class="collapse" data-collapsed="false"><i data-title="Minimizar" class="icon-chevron-up"></i></a>
       </div>
     </div>
-    <div class="widget-body" style="height:310px;overflow:hidden">
+    <div class="widget-body" style="height:310px;overflow:scroll">
       <div class="widget-comments clearfix slimscroll">
         <ul>
           <% if @last_achievements.count == 0%>

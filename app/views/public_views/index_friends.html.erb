@@ -74,7 +74,7 @@
           <i class="icon-trophy"></i>
           <h5>Ranking de tus amigos de Facebook</h5>
         </div>
-        <div class="widget-body" style="overflow:hidden; margin-bottom: 20px;">
+        <div class="widget-body" style="overflow:scroll; margin-bottom: 20px;">
           <div class="widget-comments clearfix slimscroll">
             <ul>
               <% if @gamers.count == 0%>
@@ -110,7 +110,7 @@
       <i class="icon-comment-alt"></i>
       <h5>Tu Logros recientes</h5>
     </div>
-    <div class="widget-body" style="height:310px; overflow:hidden; margin-bottom: 20px;">
+    <div class="widget-body" style="height:310px; overflow:scroll; margin-bottom: 20px;">
       <div class="widget-comments clearfix slimscroll">
         <ul>
           <% if @last_achievements.count == 0%>
