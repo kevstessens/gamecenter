@@ -176,7 +176,7 @@
       <i class="icon-bar-chart"></i>
       <h5>Usuarios con más logros en tu juego</h5>
       <div class="widget-buttons">
-        <a href="#" class="collapse" data-collapsed="false"><i data-title="Minimizar" class="icon-chevron-up"></i></a>
+        <a href="javascript:void(0)" class="collapse" data-collapsed="false"><i data-title="Minimizar" class="icon-chevron-up"></i></a>
       </div>
     </div>
     <div class="widget-body clearfix" style="height: 170px;" id="widget-tasks">
@@ -198,9 +198,9 @@
             </div>
 
             <%if gamer.name.nil?%>
-                <p>Sin nombre</p>
+                <p style="display: table-caption; width: 75px;">Sin nombre</p>
             <% else %>
-                <p><%= gamer.name%></p>
+                <p style="display: table-caption; width: 75px;"><%= gamer.name%></p>
             <% end%>
           </a>
         </div>
